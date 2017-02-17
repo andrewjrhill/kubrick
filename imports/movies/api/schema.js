@@ -10,7 +10,7 @@ export const schema = new SimpleSchema([{
   year: {
     type: Number,
     label: 'year',
-    optional: true,
+    optional: false,
   },
   director: {
     type: String,
@@ -21,6 +21,7 @@ export const schema = new SimpleSchema([{
   cast: {
     type: String,
     label: 'cast',
+    optional: true,
   },
   description: {
     type: String,
