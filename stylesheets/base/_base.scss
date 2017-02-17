@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+::-moz-selection {
+  opacity: 0.7;
+  color: $lightest;
+  background-color: $highlight;
+}
+
+::selection {
+  opacity: 0.7;
+  color: $lightest;
+  background-color: $highlight;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  color: $darkest;
+  font-weight: 300;
+  overflow-x: hidden;
+  background: $darkest;
+  font-family: $bodyFont;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+main {
+  padding-bottom: calculateRem($baseSize);
+  padding-top: calculateRem($baseSize / 2);
+  padding-left: calculateRem($baseSize / 2);
+  padding-right: calculateRem($baseSize / 2);
+}
+
+img,
+svg {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+section {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.hidden {
+  opacity: 0;
+  display: none;
+  visibility: hidden;
+  pointer-events: none;
+}

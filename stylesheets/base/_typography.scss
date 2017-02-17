@@ -1,0 +1,41 @@
+// Typography
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $lightest;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-family: $headingFont;
+}
+
+a {
+  color: $primary;
+  font-weight: 400;
+  text-decoration: none;
+  font-family: $bodyFont;
+}
+
+small,
+figcaption {
+  display: inline-block;
+}
+
+blockquote,
+blockquote p {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-style: italic;
+  margin-left: calculateRem(24px);
+
+  cite {
+    display: block;
+    text-align: right;
+  }
+}
+
+strong {
+  font-weight: 700;
+}

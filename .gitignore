@@ -1,0 +1,64 @@
+# Project Specific
+settings/
+public/
+lib/scss/lib/
+.meteor/dev_bundle
+
+# OSX
+.DS_Store
+*/.DS_Store
+.DS_Store?
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Editors & IDE's
+*.sublime-project
+*.sublime-workspace
+
+# Log files
+npm-debug.log
+yarn-error.log
+
+# Dependency directories
+node_modules/
+.sass-cache
+.npm
+bower_components
+*.orig
+.build
+.idea/
+_local
+_keys
+_build
+_releases
+_keys.zip

@@ -1,0 +1,54 @@
+button,
+.button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  width: 100%;
+  border: none;
+  color: $white;
+  display: block;
+  cursor: pointer;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 1px;
+  background: $primary;
+  font-family: $headingFont;
+  text-transform: uppercase;
+  padding: calculateRem($baseSize / 2);
+  transition: background 0.1s linear, opacity 0.3s linear;
+  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.3);
+
+  &:not(:last-child) {
+    margin-bottom: calculateRem($baseSize);
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:active {
+    background: $grey;
+    position: relative;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
+    left: calculateRem(3px);
+    top: calculateRem(3px);
+  }
+
+  &.cancel {
+    background-color: $grey;
+  }
+
+  &.offline {
+    background-color: $secondary;
+  }
+}
+
+button[disabled],
+button[readonly] {
+  cursor: not-allowed;
+  background-color: $light;
+}

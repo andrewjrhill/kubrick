@@ -1,0 +1,39 @@
+@import url('fonts.googleapis.com/css?family=Roboto:300,400,700');
+
+// Base size used when calculating rems
+$baseSize: 16px;
+
+// Base Colours
+$primary: #009FFF;
+$secondary: #FF6C00;
+$tertiary: #02B224;
+
+$highlight: #009FFF;
+$success: #02B224;
+$warning: #FF6C00;
+$error: #F9243D;
+
+// Branded Colours
+$facebook: #43619C;
+$twitter: #24A9E6;
+$google: #F24033;
+
+$black: #000000;
+$darkest: #1F242D;
+$dark: #262D37;
+$grey: #73849B;
+$light: #BDC9DA;
+$lightest: #F7F9FC;
+$white: #FFFFFF;
+
+// Font Families
+$headingFont: 'Roboto', sans-serif;
+$bodyFont: 'Roboto', sans-serif;
+$titleFont: 'Roboto', sans-serif;
+$monoFont: 'Roboto', sans-serif;
+
+// Device Sizes
+$small: 320px;
+$medium: 768px;
+$large: 1024px;
+$extra: 1440px;

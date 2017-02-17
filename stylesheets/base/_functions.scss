@@ -1,0 +1,5 @@
+// Calculates rem units from pixel units.
+@function calculateRem($size) {
+  $remSize: $size / $baseSize;
+  @return #{$remSize}rem;
+}

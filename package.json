@@ -1,0 +1,32 @@
+{
+  "name": "kubrick",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Keep track of all the movies in your collection.",
+  "main": "main.js",
+  "devDependencies": {
+    "babel-eslint": "5.0.0",
+    "eslint": "2.2.0",
+    "eslint-config-airbnb": "6.1.0",
+    "eslint-plugin-react": "4.2.0"
+  },
+  "dependencies": {
+    "babel-runtime": "6.20.0",
+    "bcrypt": "0.8.7",
+    "meteor-node-stubs": "0.2.0",
+    "reset-css": "2.0.20160720"
+  },
+  "scripts": {
+    "start": "meteor"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sntax/kubrick.git"
+  },
+  "author": "andrewjrhill@gmail.com",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Sntax/kubrick/issues"
+  },
+  "homepage": "https://github.com/Sntax/kubrick"
+}

@@ -1,0 +1,198 @@
+/*
+  Base form styling for all form elements, form elements that
+  deviate from this should be kept in their own SCSS partial, related to the specific module/component they're owned by
+*/
+
+// General Form Element Styling
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  border: 0;
+  padding: 0;
+  width: 100%;
+  display: block;
+  color: $lightest;
+  position: relative;
+  white-space: normal;
+  border-bottom: 1px solid $lightest;
+  margin-bottom: calculateRem($baseSize);
+
+  small {
+    color: $lightest;
+  }
+}
+
+label {
+  color: $lightest;
+}
+
+label,
+input,
+select,
+textarea {
+  border-radius: 0;
+  font-weight: normal;
+}
+
+input,
+select,
+textarea {
+  font-family: $bodyFont;
+}
+
+label {
+  margin: 0;
+  padding: 0;
+  height: auto;
+  display: block;
+  position: relative;
+
+  input,
+  textarea {
+    margin: 0;
+    display: block;
+    position: relative;
+    margin-bottom: calculateRem($baseSize / 2);
+    margin-top: calculateRem($baseSize / 2);
+  }
+
+  select {
+    margin: 0;
+    height: 3.57rem;
+    margin-bottom: calculateRem($baseSize / 2);
+    margin-top: calculateRem($baseSize / 2);
+  }
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  clear: both;
+  color: $grey;
+  font-weight: 400;
+  background: $white;
+  display: inline-block;
+  -webkit-appearance: none;
+  border: 1px solid $white;
+  padding: calculateRem($baseSize / 2);
+  margin-bottom: calculateRem($baseSize / 2);
+  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.3);
+}
+
+select[multiple],
+select[size] {
+  height: auto;
+}
+
+input[type="image"] {
+  padding-left: 0;
+  padding-right: 0;
+  box-shadow: none;
+}
+
+textarea {
+  height: auto;
+  box-sizing: border-box;
+  min-height: calculateRem($baseSize * 2);
+}
+
+input[type="hidden"] {
+  display: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 0;
+}
+
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus,
+select:focus {
+  outline: none;
+  box-shadow: none;
+  outline-offset: -2px;
+}
+
+input,
+textarea {
+  margin-left: 0;
+}
+
+input[disabled],
+select[disabled],
+textarea[disabled],
+input[readonly],
+select[readonly],
+textarea[readonly] {
+  cursor: not-allowed;
+  border-color: $light;
+  background-color: $light;
+}
+
+input:focus:required:invalid,
+textarea:focus:required:invalid,
+select:focus:required:invalid {
+  color: $error;
+  border-color: $error;
+}
+
+.error,
+input:focus:required:invalid:focus,
+textarea:focus:required:invalid:focus,
+select:focus:required:invalid:focus {
+  border-color: $error;
+  box-shadow: 1px 1px 10px 0 $error;
+}
+
+::-moz-placeholder {
+  color: $grey;
+}
+
+::-webkit-input-placeholder {
+  color: $grey;
+}
+
+input[type="search"] {
+  -webkit-appearance: none;
+}
+
+input[type="hidden"],
+input.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+p input,
+p textarea,
+p select {
+  margin: 0;
+}
+
+form input,
+form textarea,
+form select {
+  border: 0;
+  border-radius: 0;
+  border-bottom: 2px solid $highlight;
+}
+
+form {
+  padding: 0 0 calculateRem($baseSize);
+
+  ul {
+    padding-left: 0;
+    list-style: none;
+  }
+}
