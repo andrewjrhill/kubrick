@@ -1,5 +1,8 @@
-// Primary application components
+// Global Components
 import '/imports/global';
 
-// Application configuration
+// Configuration
 import '/imports/startup';
+
+// Components
+import '/imports/movies';

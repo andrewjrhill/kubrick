@@ -1,0 +1,13 @@
+<template name="moviesList">
+  {{#each movies}}
+    <div class="details">
+      <a href="/movies/{{ _id }}" class="card movie {{ liveState }}">
+        <ul>
+          <li class="offline-descriptor">Offline</li>
+          <li class="description">{{ description }}</li>
+          <li class="name">{{ name }}</li>
+        </ul>
+      </a>
+    </div>
+  {{/each}}
+</template>
