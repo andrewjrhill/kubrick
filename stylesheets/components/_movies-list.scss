@@ -1,54 +1,56 @@
 .movies {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+  .wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 
-  .tile {
-    color: $lightest;
-    width: rem-calc(175px);
-    padding: rem-calc(15px);
-    background-color: $darkest;
-    margin: rem-calc(0 20px 20px 0);
-    transition: background-color 0.3s linear;
+    .tile {
+      color: $lightest;
+      width: rem-calc(175px);
+      padding: rem-calc(15px);
+      background-color: $darkest;
+      margin: rem-calc(0 20px 20px 0);
+      transition: background-color 0.3s linear;
 
-    &:hover {
-      background-color: $primary;
+      &:hover {
+        background-color: $primary;
+
+        .year {
+          color: $lightest;
+        }
+      }
+
+      .poster {
+        width: rem-calc(145px);
+        background-size: cover;
+        height: rem-calc(215px);
+        background-color: $dark;
+        background-position: center;
+        box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.2);
+      }
+
+      .title {
+        overflow: hidden;
+        white-space: nowrap;
+        display: inline-block;
+        width: rem-calc(145px);
+        text-overflow: ellipsis;
+        line-height: rem-calc(20px);
+        margin: rem-calc(15px 0 10px 0);
+      }
 
       .year {
-        color: $lightest;
+        color: $grey;
+        transition: color 0.3s linear;
       }
-    }
 
-    .poster {
-      width: rem-calc(145px);
-      background-size: cover;
-      height: rem-calc(215px);
-      background-color: $dark;
-      background-position: center;
-      box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.2);
-    }
+      .title,
+      .year {
+        font-size: rem-calc(12px);
 
-    .title {
-      overflow: hidden;
-      white-space: nowrap;
-      display: inline-block;
-      width: rem-calc(145px);
-      text-overflow: ellipsis;
-      line-height: rem-calc(20px);
-      margin: rem-calc(15px 0 10px 0);
-    }
-
-    .year {
-      color: $grey;
-      transition: color 0.3s linear;
-    }
-
-    .title,
-    .year {
-      font-size: rem-calc(12px);
-
-      @media (min-width: $tablet) {
-        font-size: rem-calc(14px);
+        @media (min-width: $tablet) {
+          font-size: rem-calc(14px);
+        }
       }
     }
   }

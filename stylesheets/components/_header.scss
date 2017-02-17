@@ -2,7 +2,7 @@
   box-shadow: none;
   text-align: center;
   background-color: $primary;
-  padding: rem-calc(20px 30px);
+  padding: rem-calc(20px 10px);
   transition: box-shadow 0.3s linear;
 
   &:hover {
@@ -11,6 +11,7 @@
 
   @media (min-width: $tablet) {
     text-align: left;
+    padding: rem-calc(20px 30px);
   }
 
   .wrapper {
@@ -54,7 +55,6 @@
     .add-new {
       right: 0;
       color: $white;
-      border-radius: 5px;
       position: relative;
       text-transform: lowercase;
       font-size: rem-calc(16px);

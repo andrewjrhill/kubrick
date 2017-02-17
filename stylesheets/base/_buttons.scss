@@ -39,12 +39,8 @@ input[type="submit"] {
     top: rem-calc(3px);
   }
 
-  &.cancel {
+  &.back {
     background-color: $grey;
-  }
-
-  &.offline {
-    background-color: $secondary;
   }
 }
 
