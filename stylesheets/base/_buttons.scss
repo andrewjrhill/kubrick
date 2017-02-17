@@ -12,9 +12,10 @@ input[type="submit"] {
   text-align: center;
   letter-spacing: 1px;
   background: $primary;
+  font-size: rem-calc(15px);
   font-family: $headingFont;
   text-transform: uppercase;
-  padding: rem-calc($rem-base / 2);
+  padding: rem-calc(20px 10px);
   transition: background 0.1s linear, opacity 0.3s linear;
   box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.3);
 

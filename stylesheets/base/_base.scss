@@ -34,10 +34,13 @@ body {
 }
 
 main {
-  padding-bottom: rem-calc($rem-base);
-  padding-top: rem-calc($rem-base / 2);
-  padding-left: rem-calc($rem-base / 2);
-  padding-right: rem-calc($rem-base / 2);
+  margin: 0 auto;
+  padding: rem-calc(50px 15px);
+  max-width: rem-calc(980px);
+
+  @media (min-width: $laptop) {
+    padding: rem-calc(40px 0);
+  }
 }
 
 img,

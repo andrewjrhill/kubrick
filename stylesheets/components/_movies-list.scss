@@ -1,0 +1,31 @@
+.movies {
+  .tile {
+    display: block;
+    color: $lightest;
+    background-color: $dark;
+    padding: rem-calc(10px);
+    max-width: rem-calc(190px);
+    transition: background-color 0.3s linear;
+
+    &:hover {
+      background-color: $darkest;
+    }
+
+    .poster {
+      width: rem-calc(170px);
+      background-size: cover;
+      height: rem-calc(250px);
+      background-color: $dark;
+      background-position: center;
+    }
+
+    .title {
+      line-height: rem-calc(22px);
+      margin: rem-calc(10px 0);
+    }
+
+    .year {
+      color: $grey;
+    }
+  }
+}

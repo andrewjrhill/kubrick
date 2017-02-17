@@ -26,10 +26,6 @@ legend {
   }
 }
 
-label {
-  color: $lightest;
-}
-
 label,
 input,
 select,
@@ -49,22 +45,16 @@ label {
   padding: 0;
   height: auto;
   display: block;
+  color: $lightest;
   position: relative;
+  margin-bottom: rem-calc(25px);
 
   input,
   textarea {
     margin: 0;
     display: block;
     position: relative;
-    margin-bottom: rem-calc($rem-base / 2);
-    margin-top: rem-calc($rem-base / 2);
-  }
-
-  select {
-    margin: 0;
-    height: 3.57rem;
-    margin-bottom: rem-calc($rem-base / 2);
-    margin-top: rem-calc($rem-base / 2);
+    margin-top: rem-calc($rem-base);
   }
 }
 
@@ -74,13 +64,13 @@ select {
   width: 100%;
   clear: both;
   color: $grey;
-  font-weight: 400;
+  font-weight: 300;
   background: $white;
   display: inline-block;
   -webkit-appearance: none;
   border: 1px solid $white;
-  padding: rem-calc($rem-base / 2);
-  margin-bottom: rem-calc($rem-base / 2);
+  font-size: rem-calc(15px);
+  padding: rem-calc($rem-base);
   box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.3);
 }
 
@@ -152,11 +142,11 @@ select:focus:required:invalid:focus {
 }
 
 ::-moz-placeholder {
-  color: $grey;
+  color: $light;
 }
 
 ::-webkit-input-placeholder {
-  color: $grey;
+  color: $light;
 }
 
 input[type="search"] {

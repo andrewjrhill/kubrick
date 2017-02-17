@@ -14,11 +14,17 @@
   }
 
   .wrapper {
+    display: flex;
     margin: 0 auto;
+    align-items: baseline;
     max-width: rem-calc(980px);
+    justify-content: space-between;
+
+    a {
+      color: $white;
+    }
 
     .logo {
-      color: $white;
       letter-spacing: 2px;
       border: 1px solid $white;
       font-size: rem-calc(18px);
@@ -41,6 +47,23 @@
 
       @media (min-width: $tablet) {
         display: inline;
+      }
+    }
+
+    .add-new {
+      right: 0;
+      color: $white;
+      border-radius: 5px;
+      position: relative;
+      text-transform: lowercase;
+      font-size: rem-calc(16px);
+      padding: rem-calc(6px 15px);
+      background-color: transparent;
+      transition: color 0.3s linear, background-color 0.3s linear;
+
+      &:hover {
+        color: $primary;
+        background-color: $white;
       }
     }
   }

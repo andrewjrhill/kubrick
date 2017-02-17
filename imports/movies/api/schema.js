@@ -7,26 +7,25 @@ export const schema = new SimpleSchema([{
     max: 140,
     optional: false,
   },
-  description: {
-    type: String,
-    label: 'description',
-    max: 1100,
-    optional: true,
-  },
   year: {
     type: Number,
     label: 'year',
     optional: true,
   },
-  actors: {
-    type: Object,
-    label: 'actors',
-    blackbox: true,
-  },
   director: {
     type: String,
     label: 'director',
     max: 140,
+    optional: true,
+  },
+  cast: {
+    type: String,
+    label: 'cast',
+  },
+  description: {
+    type: String,
+    label: 'description',
+    max: 1100,
     optional: true,
   },
 }]);

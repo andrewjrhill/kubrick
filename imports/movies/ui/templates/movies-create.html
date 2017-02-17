@@ -1,0 +1,41 @@
+<template name="moviesCreate">
+  <h1 class="primary-heading">Add a new movie</h1>
+
+  <form>
+    <!-- Title -->
+    <label class="title" required>
+      Movie Title
+      <input type="text" name="title" placeholder="2001: A Space Odyssey">
+    </label>
+
+    <!-- Year Released -->
+    <label class="year">
+      Year Released
+      <input type="text" name="year" placeholder="1968">
+    </label>
+
+    <!-- Director -->
+    <label class="director">
+      Director
+      <input type="text" name="director" placeholder="Stanley Kubrick">
+    </label>
+
+    <!-- Cast -->
+    <label class="cast">
+      Cast
+      <textarea type="text" name="cast" rows="3" placeholder="Keir Dullea, Douglas Rain, Gary Lockwood, William Sylvester, Daniel Richter"></textarea>
+    </label>
+
+    <!-- Description -->
+    <label class="description">
+      Short Description
+      <textarea type="text" name="description" rows="5" placeholder="Humanity finds a mysterious object buried beneath the lunar surface and sets off to find its origins with the help of HAL 9000, the world's most advanced super computer."></textarea>
+    </label>
+
+    <!-- Submit -->
+    <input class="button submit" type="submit" name="submit">
+
+    <!-- Cancel -->
+    <button class="button cancel" type="button" name="cancel">Cancel</button>
+  </form>
+</template>
