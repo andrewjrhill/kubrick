@@ -19,7 +19,7 @@ legend {
   position: relative;
   white-space: normal;
   border-bottom: 1px solid $lightest;
-  margin-bottom: calculateRem($baseSize);
+  margin-bottom: rem-calc($rem-base);
 
   small {
     color: $lightest;
@@ -56,15 +56,15 @@ label {
     margin: 0;
     display: block;
     position: relative;
-    margin-bottom: calculateRem($baseSize / 2);
-    margin-top: calculateRem($baseSize / 2);
+    margin-bottom: rem-calc($rem-base / 2);
+    margin-top: rem-calc($rem-base / 2);
   }
 
   select {
     margin: 0;
     height: 3.57rem;
-    margin-bottom: calculateRem($baseSize / 2);
-    margin-top: calculateRem($baseSize / 2);
+    margin-bottom: rem-calc($rem-base / 2);
+    margin-top: rem-calc($rem-base / 2);
   }
 }
 
@@ -79,8 +79,8 @@ select {
   display: inline-block;
   -webkit-appearance: none;
   border: 1px solid $white;
-  padding: calculateRem($baseSize / 2);
-  margin-bottom: calculateRem($baseSize / 2);
+  padding: rem-calc($rem-base / 2);
+  margin-bottom: rem-calc($rem-base / 2);
   box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.3);
 }
 
@@ -98,7 +98,7 @@ input[type="image"] {
 textarea {
   height: auto;
   box-sizing: border-box;
-  min-height: calculateRem($baseSize * 2);
+  min-height: rem-calc($rem-base * 2);
 }
 
 input[type="hidden"] {
@@ -189,7 +189,7 @@ form select {
 }
 
 form {
-  padding: 0 0 calculateRem($baseSize);
+  padding: 0 0 rem-calc($rem-base);
 
   ul {
     padding-left: 0;

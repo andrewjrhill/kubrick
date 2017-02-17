@@ -14,12 +14,12 @@ input[type="submit"] {
   background: $primary;
   font-family: $headingFont;
   text-transform: uppercase;
-  padding: calculateRem($baseSize / 2);
+  padding: rem-calc($rem-base / 2);
   transition: background 0.1s linear, opacity 0.3s linear;
   box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.3);
 
   &:not(:last-child) {
-    margin-bottom: calculateRem($baseSize);
+    margin-bottom: rem-calc($rem-base);
   }
 
   &:hover {
@@ -34,8 +34,8 @@ input[type="submit"] {
     background: $grey;
     position: relative;
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
-    left: calculateRem(3px);
-    top: calculateRem(3px);
+    left: rem-calc(3px);
+    top: rem-calc(3px);
   }
 
   &.cancel {

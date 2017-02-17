@@ -1,0 +1,47 @@
+.header {
+  box-shadow: none;
+  text-align: center;
+  background-color: $primary;
+  padding: rem-calc(20px 30px);
+  transition: box-shadow 0.3s linear;
+
+  &:hover {
+    box-shadow: 0 0 4px 0 $primary;
+  }
+
+  @media (min-width: $tablet) {
+    text-align: left;
+  }
+
+  .wrapper {
+    margin: 0 auto;
+    max-width: rem-calc(980px);
+
+    .logo {
+      color: $white;
+      letter-spacing: 2px;
+      border: 1px solid $white;
+      font-size: rem-calc(18px);
+      padding: rem-calc(5px 15px);
+      background-color: transparent;
+      transition: color 0.3s linear, background-color 0.3s linear;
+
+      &:hover {
+        color: $primary;
+        background-color: $white;
+      }
+    }
+
+    .tagline {
+      display: none;
+      color: $white;
+      letter-spacing: 1px;
+      font-size: rem-calc(14px);
+      margin: rem-calc(-10px 0 0 30px);
+
+      @media (min-width: $tablet) {
+        display: inline;
+      }
+    }
+  }
+}

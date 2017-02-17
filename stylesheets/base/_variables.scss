@@ -1,7 +1,9 @@
 @import url('fonts.googleapis.com/css?family=Roboto:300,400,700');
 
-// Base size used when calculating rems
-$baseSize: 16px;
+// Configure rem-calc
+$rem-base-font-size: 100% !default;
+$rem-base-line-height: 150%;
+$rem-base: 16px !default;
 
 // Base Colours
 $primary: #009FFF;
@@ -33,7 +35,9 @@ $titleFont: 'Roboto', sans-serif;
 $monoFont: 'Roboto', sans-serif;
 
 // Device Sizes
-$small: 320px;
-$medium: 768px;
-$large: 1024px;
-$extra: 1440px;
+$mobile-small: 320px;
+$mobile-medium: 375px;
+$mobile-large: 425px;
+$tablet: 768px;
+$laptop: 1024px;
+$laptop-large: 1440px;

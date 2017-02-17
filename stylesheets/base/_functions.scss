@@ -1,5 +1,23 @@
-// Calculates rem units from pixel units.
-@function calculateRem($size) {
-  $remSize: $size / $baseSize;
-  @return #{$remSize}rem;
+// Zurb Foundations rem-calc function to calculate pixel and percent units to rem units.
+// See http://foundation.zurb.com/sites/docs/v/5.5.3/components/sass.html
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+@function convert-to-rem($value, $base-value: $rem-base)  {
+  $value: strip-unit($value) / strip-unit($base-value) * 1em;
+  @if ($value == 0em) { $value: 0; }
+  @return $value;
+}
+
+@function rem-calc($values, $base-value: $rem-base) {
+  $max: length($values);
+
+  @if $max == 1 { @return convert-to-rem(nth($values, 1), $base-value); }
+
+  $remValues: ();
+  @for $i from 1 through $max {
+    $remValues: append($remValues, convert-to-rem(nth($values, $i), $base-value));
+  }
+  @return $remValues;
 }
