@@ -9,14 +9,14 @@ Template.query.helpers({
   /**
    *
    */
-  movieData() {
-    const movieData = TheMovieDB.getMovieData();
+  searchResults() {
+    const searchResults = TheMovieDB.getSearchResults();
 
-    if (movieData && !movieData) {
+    if (searchResults && !searchResults) {
       return;
     }
 
-    const movies = movieData ? movieData.data.results : [];
+    const movies = searchResults ? searchResults.data.results : [];
 
     return movies.slice(0, 5);
   },
@@ -26,24 +26,31 @@ Template.query.events({
   /**
    *
    */
-  'keyup .themoviedb input, keydown .themoviedb input': _.debounce((event, template) => {
-    const searchString = document.querySelector('.themoviedb input').value;
+  'keyup .themoviedb input': _.debounce((event, template) => {
+    const searchString = event.currentTarget.value;
     const whitespace = /\S/;
 
     if (!(whitespace.test(searchString))) {
-      return TheMovieDB.clearMovieData();
+      return TheMovieDB.clearSearchResults();
     }
 
     const searchURI = TheMovieDB.handleSearchURI(searchString);
 
-    return TheMovieDB.queryTheMovieDB(searchURI);
+    return TheMovieDB.searchTheMovieDB(searchURI);
   }, 500),
 
   /**
    *
    */
-  'click .search-results li': (event, template) => {
-    const data = Template.currentData(event.currentTarget);
-    TheMovieDB.clearMovieData();
+  'click .search-results li'(event, template) {
+    const movieData = Template.currentData(event.currentTarget);
+    const creditsURI = TheMovieDB.handleCreditsURI(movieData.id);
+
+    TheMovieDB.setMovieData(movieData);
+    TheMovieDB.clearSearchResults();
+
+    Meteor.setTimeout(() => {
+      TheMovieDB.getMovieCredits(creditsURI)
+    }, 150);
   }
 });
