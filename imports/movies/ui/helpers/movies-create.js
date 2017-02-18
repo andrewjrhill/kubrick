@@ -44,7 +44,6 @@ Template.moviesCreate.events({
    */
   'click .cancel'(event) {
     event.preventDefault();
-
-    return history.back();
+    FlowRouter.go(`/movies`);
   },
 });

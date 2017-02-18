@@ -1,0 +1,43 @@
+<template name="moviesEdit">
+  {{#with movie}}
+    <div class="content">
+      <form class="movies-create">
+        <!-- Title -->
+        <label class="title" required>
+          Movie Title
+          <input type="text" name="title" placeholder="2001: A Space Odyssey" value="{{ title }}">
+        </label>
+
+        <!-- Year Released -->
+        <label class="year" required>
+          Year Released
+          <input type="text" name="year" placeholder="1968" value="{{ year }}">
+        </label>
+
+        <!-- Director -->
+        <label class="director">
+          Director
+          <input type="text" name="director" placeholder="Stanley Kubrick" value="{{ director }}">
+        </label>
+
+        <!-- Cast -->
+        <label class="cast">
+          Cast
+          <textarea type="text" name="cast" rows="3" placeholder="Keir Dullea, Douglas Rain, Gary Lockwood, William Sylvester, Daniel Richter" value="{{ cast }}"></textarea>
+        </label>
+
+        <!-- Description -->
+        <label class="description">
+          Short Description
+          <textarea type="text" name="description" rows="5" placeholder="Humanity finds a mysterious object buried beneath the lunar surface and sets off to find its origins with the help of HAL 9000, the world's most advanced super computer." value="{{ description }}"></textarea>
+        </label>
+
+        <!-- Submit -->
+        <input class="button submit" type="submit" name="submit">
+
+        <!-- Cancel -->
+        <button class="button cancel" type="button" name="cancel">Cancel</button>
+      </form>
+    </div>
+  {{/with}}
+</template>

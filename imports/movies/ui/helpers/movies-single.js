@@ -30,16 +30,14 @@ Template.moviesSingle.events({
    */
   'click .edit-movie'(event, template) {
     event.preventDefault();
-
     FlowRouter.go(`/movies/${template.movieId}/edit`);
   },
 
   /**
    *
    */
-  'click .go-back'(event, template) {
+  'click .go-back'(event) {
     event.preventDefault();
-
-    return history.back();
+    FlowRouter.go(`/movies`);
   },
 });
