@@ -1,25 +1,25 @@
 <template name="moviesSingle">
   {{#with movie}}
-    <div class="banner" style="background-image: url('/images/placeholder.jpg')">
+    <div class="banner" style="background-image: url('{{ banner }}')">
       <div class="overlay">&nbsp;</div>
       <!-- <button class="edit-movie">Edit Movie</button> -->
     </div>
     <div class="wrapper">
       <div class="content">
-        <div class="poster" style="background-image: url('/images/placeholder.jpg')">&nbsp;</div>
+        <div class="poster" style="background-image: url('{{ poster  }}')">&nbsp;</div>
         <h1 class="title">{{ title }}</h1>
       </div>
       <ul class="details">
-        <li class="year"><span class="category">Year:</span> {{ year }}</li>
-        <li class="director "><span class="category">Director:</span> {{ director }}</li>
+        <li class="release-date"><span class="category">Release Date:</span> {{ release_date }}</li>
+        <!-- <li class="director "><span class="category">Director:</span> {{ director }}</li> -->
         <li class="description ">{{ description }}</li>
       </ul>
-      <div class="cast">
+      <!-- <div class="cast">
         <p class="category">Cast: </p>
         <ul>
           <li class="cast ">{{ cast }}</li>
         </ul>
-      </div>
+      </div> -->
     </div>
     <div class="buttons">
       <button class="go-back">Go Back</button>

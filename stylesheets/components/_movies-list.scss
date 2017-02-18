@@ -15,7 +15,11 @@
       &:hover {
         background-color: $primary;
 
-        .year {
+        .poster {
+          transform: scale(1.02);
+        }
+
+        .release-date {
           color: $lightest;
         }
       }
@@ -28,10 +32,6 @@
         box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.2);
         height: rem-calc(215px);
         width: rem-calc(145px);
-
-        &:hover {
-          transform: scale(1.02);
-        }
 
         &:active {
           position: relative;
@@ -48,16 +48,16 @@
         text-overflow: ellipsis;
         margin: rem-calc(15px 0 10px 0);
         line-height: rem-calc(20px);
-        width: rem-calc(145px);
+        width: rem-calc(165px);
       }
 
-      .year {
+      .release-date {
         color: $grey;
         transition: color 0.3s linear;
       }
 
       .title,
-      .year {
+      .release-date {
         font-size: rem-calc(12px);
 
         @media (min-width: $tablet) {

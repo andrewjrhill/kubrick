@@ -4,9 +4,9 @@
   <div class="wrapper">
     {{#each movies}}
       <a class="tile" href="/movies/{{ _id }}">
-        <div class="poster" style="background-image: url('images/placeholder.jpg')">&nbsp;</div>
+        <div class="poster" style="background-image: url('{{ poster  }}')">&nbsp;</div>
         <div class="title">{{ title }}</div>
-        <div class="year">{{ year }}</div>
+        <div class="release-date">{{ release_date }}</div>
       </a>
     {{/each}}
   </div>

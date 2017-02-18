@@ -12,6 +12,7 @@ WELCOME TO KUBRICK
   const trustedURLs = [
     'fonts.googleapis.com',
     'api.themoviedb.org',
+    'image.tmdb.org',
   ];
 
   BrowserPolicy.framing.disallow();

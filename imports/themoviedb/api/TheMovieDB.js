@@ -100,7 +100,7 @@ const TheMovieDB = {
     } = rawData;
 
     const data = {
-      banner: `https://image.tmdb.org/t/p/w1300_and_h730_bestv2${banner}`,
+      banner: `https://image.tmdb.org/t/p/w780${banner}`,
       description,
       poster: `https://image.tmdb.org/t/p/w300_and_h450_bestv2${poster}`,
       title,
@@ -141,8 +141,6 @@ const TheMovieDB = {
       ...movieData,
       ...structuredCredits,
     }
-
-    console.log(fullMovieData)
 
     TheMovieDB.clearMovieData();
     TheMovieDB.clearCreditsData();

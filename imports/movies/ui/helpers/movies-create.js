@@ -9,26 +9,31 @@ import '/imports/movies/ui/templates/movies-create.html';
 
 Template.moviesCreate.events({
   /**
-   * Creates a movie on submission.
    *
-   * @param { Object } javascript event object
-   * @return { Function } call to insert data into the Movies collection
    */
   'submit form': (event) => {
     event.preventDefault();
 
-    const title = document.querySelector('.title input').value;
-    const year = document.querySelector('.year input').value;
-    const director = document.querySelector('.director input').value;
-    const cast = document.querySelector('.cast textarea').value;
-    const description = document.querySelector('.description textarea').value;
+    const {
+      banner,
+      cast,
+      crew,
+      description,
+      poster,
+      release_date,
+      title,
+      tmdb_id,
+    } = Session.get('fullMovieData');
 
     return Movies.insert({
-      title,
-      year,
-      director,
+      banner,
       cast,
+      crew,
       description,
+      poster,
+      release_date,
+      title,
+      tmdb_id,
     }, (error) => {
       if (error) {
         throw new Meteor.Error('500', 'Error adding a new movie', error);

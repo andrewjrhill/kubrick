@@ -1,32 +1,44 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 export const schema = new SimpleSchema([{
-  title: {
+  banner: {
     type: String,
-    label: 'title',
-    max: 140,
-    optional: false,
-  },
-  year: {
-    type: Number,
-    label: 'year',
-    optional: false,
-  },
-  director: {
-    type: String,
-    label: 'director',
-    max: 140,
+    label: 'banner',
     optional: true,
   },
   cast: {
-    type: String,
+    type: [Object],
+    label: 'cast',
+    optional: true,
+  },
+  crew: {
+    type: [Object],
     label: 'cast',
     optional: true,
   },
   description: {
     type: String,
     label: 'description',
-    max: 1100,
     optional: true,
+  },
+  poster: {
+    type: String,
+    label: 'banner',
+    optional: true,
+  },
+  release_date: {
+    type: String,
+    label: 'release_date',
+    optional: true,
+  },
+  title: {
+    type: String,
+    label: 'title',
+    optional: false,
+  },
+  tmdb_id: {
+    type: Number,
+    label: 'tmdb',
+    optional: false,
   },
 }]);
