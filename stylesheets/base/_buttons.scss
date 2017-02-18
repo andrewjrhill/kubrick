@@ -9,9 +9,9 @@ input[type="submit"] {
   display: block;
   cursor: pointer;
   font-weight: 400;
+  background: $grey;
   text-align: center;
   letter-spacing: 1px;
-  background: $primary;
   font-family: $headingFont;
   text-transform: uppercase;
   transition: background 0.1s linear, opacity 0.3s linear;
@@ -39,9 +39,8 @@ input[type="submit"] {
     top: rem-calc(3px);
   }
 
-  &.go-back,
-  &.cancel {
-    background-color: $grey;
+  &.primary {
+    background-color: $primary;
   }
 }
 

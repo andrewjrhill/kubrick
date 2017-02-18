@@ -18,26 +18,6 @@
       height: 100%;
       background-color: $darkest;
     }
-
-    .edit-movie {
-      display: none;
-      margin: 0 0 0 auto;
-      position: relative;
-      border: 1px solid white;
-      background-color: transparent;
-      transition: background-color 0.3s linear;
-      width: rem-calc(230px);
-      top: rem-calc(-140px);
-      right: rem-calc(50px);
-
-      &:hover {
-        background-color: rgba(31, 36, 45, 0.9);
-      }
-
-      @media (min-width: $tablet) {
-        display: block;
-      }
-    }
   }
 
   .wrapper {

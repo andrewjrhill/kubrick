@@ -67,8 +67,8 @@ Template.moviesEdit.events({
    * @param { Object } javascript event object
    * @return { Function } navigate to the movies list view
    */
-  'click .cancel'(event) {
+  'click .cancel'(event, template) {
     event.preventDefault();
-    FlowRouter.go(`/movies`);
+    FlowRouter.go(`/movies/${template.movieId}`);
   },
 });

@@ -2,7 +2,7 @@
   <div class="loading-indicator {{ querying }}">&nbsp;</div>
   <label class="themoviedb {{ label }}" required>
     {{ label }}
-    <input type="text" name="{{ label }}" placeholder="{{ placeholder }}" value="{{ value }}">
+    <input type="text" name="{{ label }}" placeholder="{{ placeholder }}" value="{{ value }}" autocomplete="off">
   </label>
 
   {{#if searchResults }}
@@ -10,7 +10,7 @@
         {{#each movie in searchResults }}
           {{#with movie }}
             <li>
-              <span class="title-year">{{ movie.original_title }} - {{ movie.release_date }}</span>
+              <span class="title-year">{{ movie.original_title }} ({{ movie.release_date }})</span>
               <span class="description">{{ movie.overview }}</span>
             </li>
           {{/with}}

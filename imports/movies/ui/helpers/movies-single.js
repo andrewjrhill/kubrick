@@ -11,7 +11,6 @@ Template.moviesSingle.onCreated(() => {
 
   Tracker.autorun(() => {
     templateInstance.movieId = FlowRouter.getParam('id');
-
     Meteor.subscribe('movies');
   });
 });
@@ -19,7 +18,6 @@ Template.moviesSingle.onCreated(() => {
 Template.moviesSingle.helpers({
   movie() {
     const templateInstance = Template.instance();
-
     return Movies.findOne({ _id: templateInstance.movieId });
   },
 });
@@ -28,16 +26,16 @@ Template.moviesSingle.events({
   /**
    *
    */
-  'click .edit-movie'(event, template) {
-    event.preventDefault();
+  'click .edit'(event, template) {
     FlowRouter.go(`/movies/${template.movieId}/edit`);
   },
 
   /**
    *
    */
-  'click .go-back'(event) {
-    event.preventDefault();
-    FlowRouter.go(`/movies`);
+  'click .delete'(event, template) {
+    const { _id } = Template.currentData(event.currentTarget);
+    Movies.remove({ _id });
+    FlowRouter.go(`/`);
   },
 });
