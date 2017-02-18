@@ -5,9 +5,9 @@
     width: 100%;
     background-size: cover;
     background-color: $dark;
-    height: rem-calc(150px);
     background-position: center;
     transition: height 0.3s linear;
+    height: rem-calc(150px);
 
     @media (min-width: $tablet) {
       height: rem-calc(200px);
@@ -17,6 +17,26 @@
       opacity: 0.5;
       height: 100%;
       background-color: $darkest;
+    }
+
+    .edit-movie {
+      display: none;
+      margin: 0 0 0 auto;
+      position: relative;
+      border: 1px solid white;
+      background-color: transparent;
+      transition: background-color 0.3s linear;
+      width: rem-calc(230px);
+      top: rem-calc(-140px);
+      right: rem-calc(50px);
+
+      &:hover {
+        background-color: rgba(31, 36, 45, 0.9);
+      }
+
+      @media (min-width: $tablet) {
+        display: block;
+      }
     }
   }
 
@@ -37,44 +57,44 @@
 
       .poster {
         position: relative;
-        top: rem-calc(-80px);
-        width: rem-calc(100px);
         background-size: cover;
         background-color: $dark;
-        height: rem-calc(140px);
-        min-width: rem-calc(100px);
         background-position: center;
-        margin-bottom: rem-calc(-50px);
         box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.3);
         transition: top 0.3s linear,
                     width 0.3s linear,
                     height 0.3s linear,
                     min-width 0.3s linear;
+        margin-bottom: rem-calc(-50px);
+        min-width: rem-calc(100px);
+        height: rem-calc(140px);
+        width: rem-calc(100px);
+        top: rem-calc(-80px);
 
         @media (min-width: $tablet) {
-          top: rem-calc(-100px);
-          width: rem-calc(150px);
-          height: rem-calc(230px);
           min-width: rem-calc(150px);
+          height: rem-calc(230px);
+          width: rem-calc(150px);
+          top: rem-calc(-110px);
         }
       }
 
       .title {
         width: 100%;
-        font-size: rem-calc(20px);
-        margin-left: rem-calc(15px);
         transition: font-size 0.3s linear;
+        margin-left: rem-calc(15px);
+        font-size: rem-calc(20px);
 
         @media (min-width: $tablet) {
-          font-size: rem-calc(26px);
+          font-size: rem-calc(30px);
 
           &:after {
             content: '';
             width: 100%;
             display: block;
-            height: rem-calc(1px);
-            margin-top: rem-calc(15px);
             background-color: $primary;
+            margin-top: rem-calc(15px);
+            height: rem-calc(1px);
           }
         }
       }
@@ -98,14 +118,26 @@
     }
   }
 
-  button.back {
-    margin: rem-calc(20px);
-    width: calc(100% - 40px);
+  .buttons {
+    margin-top: rem-calc(50px);
 
     @media (min-width: $tablet) {
-      display: none;
-      width: rem-calc(266);
-      margin: rem-calc(20px 0 0 0);
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+
+    button {
+      margin: 0 auto rem-calc(20px) auto;
+      width: rem-calc(280);
+
+      @media (min-width: $tablet) {
+        margin: rem-calc(20px);
+
+        &:not(:last-child) {
+          margin-right: 0;
+        };
+      }
     }
   }
 }

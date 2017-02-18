@@ -69,9 +69,9 @@ select {
   display: inline-block;
   -webkit-appearance: none;
   border: 1px solid $white;
-  font-size: rem-calc(15px);
-  padding: rem-calc($rem-base);
   box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.3);
+  padding: rem-calc($rem-base);
+  font-size: rem-calc(15px);
 }
 
 select[multiple],
@@ -175,7 +175,7 @@ form textarea,
 form select {
   border: 0;
   border-radius: 0;
-  border-bottom: 2px solid $highlight;
+  border-bottom: 2px solid $primary;
 }
 
 form {

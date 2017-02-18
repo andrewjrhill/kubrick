@@ -75,10 +75,10 @@ blockquote p {
     content: '';
     display: block;
     margin: 0 auto;
-    height: rem-calc(1px);
-    width: rem-calc(100px);
     background-color: $primary;
     margin-top: rem-calc(20px);
+    width: rem-calc(100px);
+    height: rem-calc(1px);
   }
 }
 

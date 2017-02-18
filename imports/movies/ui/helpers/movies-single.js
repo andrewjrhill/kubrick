@@ -37,7 +37,7 @@ Template.moviesSingle.events({
   /**
    *
    */
-  'click button.back'(event, template) {
+  'click .go-back'(event, template) {
     event.preventDefault();
 
     return history.back();

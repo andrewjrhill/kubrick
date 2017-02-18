@@ -12,12 +12,12 @@ input[type="submit"] {
   text-align: center;
   letter-spacing: 1px;
   background: $primary;
-  font-size: rem-calc(15px);
   font-family: $headingFont;
   text-transform: uppercase;
-  padding: rem-calc(20px 10px);
   transition: background 0.1s linear, opacity 0.3s linear;
   box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.3);
+  padding: rem-calc(20px 10px);
+  font-size: rem-calc(15px);
 
   &:not(:last-child) {
     margin-bottom: rem-calc($rem-base);
@@ -39,7 +39,7 @@ input[type="submit"] {
     top: rem-calc(3px);
   }
 
-  &.back {
+  &.go-back {
     background-color: $grey;
   }
 }

@@ -2,8 +2,8 @@
   box-shadow: none;
   text-align: center;
   background-color: $primary;
-  padding: rem-calc(20px 10px);
   transition: box-shadow 0.3s linear;
+  padding: rem-calc(20px 10px);
 
   &:hover {
     box-shadow: 0 0 4px 0 $primary;
@@ -18,9 +18,9 @@
     display: flex;
     margin: 0 auto;
     align-items: baseline;
-    padding: rem-calc(0 15px);
-    max-width: rem-calc(980px);
     justify-content: space-between;
+    max-width: rem-calc(980px);
+    padding: rem-calc(0 15px);
 
     a {
       color: $white;
@@ -29,10 +29,10 @@
     .logo {
       letter-spacing: 2px;
       border: 1px solid $white;
-      font-size: rem-calc(18px);
-      padding: rem-calc(5px 15px);
       background-color: transparent;
       transition: color 0.3s linear, background-color 0.3s linear;
+      padding: rem-calc(5px 15px);
+      font-size: rem-calc(18px);
 
       &:hover {
         color: $primary;
@@ -44,8 +44,8 @@
       display: none;
       color: $white;
       letter-spacing: 1px;
-      font-size: rem-calc(14px);
       margin: rem-calc(-10px 0 0 30px);
+      font-size: rem-calc(14px);
 
       @media (min-width: $tablet) {
         display: inline;
@@ -57,10 +57,10 @@
       color: $white;
       position: relative;
       text-transform: lowercase;
-      font-size: rem-calc(16px);
-      padding: rem-calc(6px 15px);
       background-color: transparent;
       transition: color 0.3s linear, background-color 0.3s linear;
+      padding: rem-calc(6px 15px);
+      font-size: rem-calc(16px);
 
       &:hover {
         color: $primary;
