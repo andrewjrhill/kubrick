@@ -1,7 +1,10 @@
+import { _ } from 'meteor/underscore';
 import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
+import TheMovieDB from '/imports/movies/api/TheMovieDB.js';
 import { Movies } from '/imports/movies/api/collection.js';
 import '/imports/movies/ui/templates/movies-create.html';
 
@@ -12,7 +15,7 @@ Template.moviesCreate.events({
    * @param { Object } javascript event object
    * @return { Function } call to insert data into the Movies collection
    */
-  'submit form'(event) {
+  'submit form': (event) => {
     event.preventDefault();
 
     const title = document.querySelector('.title input').value;
@@ -37,12 +40,23 @@ Template.moviesCreate.events({
   },
 
   /**
+   *
+   *
+   * @param
+   * @return
+   */
+  'keyup .title input': _.debounce((event, template) => {
+    const searchURI = TheMovieDB.handleSearchURI('john wick');
+    const movieData = TheMovieDB.getMovieData(searchURI);
+  }, 500),
+
+  /**
    * Navigate back to the movies list view when clicking the cancel button.
    *
    * @param { Object } javascript event object
    * @return { Function } navigate to the movies list view
    */
-  'click .cancel'(event) {
+  'click .cancel': (event) => {
     event.preventDefault();
     FlowRouter.go(`/movies`);
   },
