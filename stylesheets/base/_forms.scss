@@ -47,6 +47,7 @@ label {
   display: block;
   color: $lightest;
   position: relative;
+  text-transform: capitalize;
   margin-bottom: rem-calc(25px);
 
   input,

@@ -3,10 +3,7 @@
     <div class="content">
       <form class="movies-create">
         <!-- Title -->
-        <label class="title" required>
-          Movie Title
-          <input type="text" name="title" placeholder="2001: A Space Odyssey" value="{{ title }}">
-        </label>
+        {{> query label="title" placeholder="2001: A Space Odyssey" value=title }}
 
         <!-- Year Released -->
         <label class="year" required>

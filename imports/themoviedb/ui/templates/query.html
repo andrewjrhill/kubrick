@@ -1,0 +1,17 @@
+<template name="query">
+  <label class="themoviedb {{ label }}" required>
+    {{ label }}
+    <input type="text" name="{{ label }}" placeholder="{{ placeholder }}" value="{{ value }}">
+  </label>
+
+  {{#if movieData }}
+    <ul class="search-results">
+        {{#each movie in movieData }}
+          <li>
+            <span class="title-year">{{ movie.original_title }} - {{ movie.release_date }}</span>
+            <span class="description">{{ movie.overview }}</span>
+          </li>
+        {{/each }}
+    </ul>
+  {{/if }}
+</template>

@@ -4,7 +4,6 @@ import { Session } from 'meteor/session';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
-import TheMovieDB from '/imports/movies/api/TheMovieDB.js';
 import { Movies } from '/imports/movies/api/collection.js';
 import '/imports/movies/ui/templates/movies-create.html';
 
@@ -38,17 +37,6 @@ Template.moviesCreate.events({
       FlowRouter.go('/movies');
     });
   },
-
-  /**
-   *
-   *
-   * @param
-   * @return
-   */
-  'keyup .title input': _.debounce((event, template) => {
-    const searchURI = TheMovieDB.handleSearchURI('john wick');
-    const movieData = TheMovieDB.getMovieData(searchURI);
-  }, 500),
 
   /**
    * Navigate back to the movies list view when clicking the cancel button.

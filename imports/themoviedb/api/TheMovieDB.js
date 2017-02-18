@@ -1,7 +1,8 @@
 import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
 import { Movies } from '/imports/movies/api/collection.js';
 
-export default TheMovieDB = {
+const TheMovieDB = {
   /**
    * The handleSearchURI method accepts a search query string and constructs
    * an encoded URI that can be used to query TheMovieDB for movies.
@@ -28,7 +29,19 @@ export default TheMovieDB = {
         throw new Meteor.Error('Error requesting data from TheMovieDB', error);
       }
 
-      return result;
+      Session.set('movieData', result);
     });
-  }
+  },
+
+  /**
+   *
+   */
+  getMovieData: () => Session.get('movieData'),
+
+  /**
+   *
+   */
+  clearMovieData: () => Session.set('movieData', ''),
 }
+
+export { TheMovieDB };

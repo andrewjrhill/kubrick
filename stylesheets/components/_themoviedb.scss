@@ -1,0 +1,32 @@
+.search-results {
+  background-color: $white;
+  margin-bottom: rem-calc(20px);
+  margin-top: rem-calc(-20px);
+  padding: rem-calc(10px);
+
+  li {
+    color: $darkest;
+    cursor: pointer;
+    font-weight: 400;
+    background-color: $white;
+    transition: background-color 0.3s linear, color 0.3s linear;
+    font-size: rem-calc(15px);
+    padding: rem-calc(10px);
+
+    &:hover {
+      color: $primary;
+      background-color: $lightest;
+    }
+
+    span {
+      display: block;
+
+      &.description {
+        color: $grey;
+        line-height: rem-calc(20px);
+        margin-top: rem-calc(5px);
+        font-size: rem-calc(14px);
+      }
+    }
+  }
+}
