@@ -5,11 +5,15 @@ import { Template } from 'meteor/templating';
 import { TheMovieDB } from '/imports/themoviedb/api/TheMovieDB.js';
 import '/imports/themoviedb/ui/templates/query.html';
 
+Template.query.onCreated(() => {
+  Session.setDefault('queryingActive', false)
+});
+
 Template.query.helpers({
   /**
    *
    */
-  searchResults() {
+  searchResults: () => {
     const searchResults = TheMovieDB.getSearchResults();
 
     if (searchResults && !searchResults) {
@@ -20,6 +24,11 @@ Template.query.helpers({
 
     return movies.slice(0, 5);
   },
+
+  /**
+   *
+   */
+  querying: () => Session.get('queryingActive'),
 });
 
 Template.query.events({
@@ -48,9 +57,11 @@ Template.query.events({
 
     TheMovieDB.setMovieData(movieData);
     TheMovieDB.clearSearchResults();
+    TheMovieDB.getMovieCredits(creditsURI)
 
     Meteor.setTimeout(() => {
-      TheMovieDB.getMovieCredits(creditsURI)
-    }, 150);
+      TheMovieDB.setFullMovieData();
+      Session.set('queryingActive', false);
+    }, 500);
   }
 });

@@ -1,3 +1,30 @@
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+
+.loading-indicator {
+  &.true::before {
+    opacity: 1;
+  }
+
+  &::before {
+    opacity: 0;
+    content: '';
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border-radius: 50%;
+    left: calc(50% - 15px);
+    box-sizing: border-box;
+    border: 3px solid #f6f;
+    border-top-color: #0e0;
+    border-right-color: #0dd;
+    border-bottom-color: #f90;
+    transition: opacity 0.1s linear;
+    animation: spinner .6s linear infinite;
+  }
+}
+
 .search-results {
   background-color: $white;
   margin-bottom: rem-calc(20px);

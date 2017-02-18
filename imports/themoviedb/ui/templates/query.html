@@ -1,4 +1,5 @@
 <template name="query">
+  <div class="loading-indicator {{ querying }}">&nbsp;</div>
   <label class="themoviedb {{ label }}" required>
     {{ label }}
     <input type="text" name="{{ label }}" placeholder="{{ placeholder }}" value="{{ value }}">

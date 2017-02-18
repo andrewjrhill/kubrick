@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
+import { Tracker } from 'meteor/tracker';
 import { Movies } from '/imports/movies/api/collection.js';
 
 const TheMovieDB = {
@@ -20,7 +21,11 @@ const TheMovieDB = {
    *
    */
   searchTheMovieDB: (endpointURI) => {
-    HTTP.call('GET', endpointURI, {}, (error, result) => {
+    Session.set('queryingActive', true);
+
+    return HTTP.call('GET', endpointURI, {}, (error, result) => {
+      Session.set('queryingActive', false);
+
       if (error) {
         throw new Meteor.Error('Error requesting data from TheMovieDB', error);
       }
@@ -44,7 +49,11 @@ const TheMovieDB = {
     const baseData = Session.get('movieData');
     const { tmdb_id } = baseData;
 
-    HTTP.call('GET', creditsURI, {}, (error, result) => {
+    Session.set('queryingActive', true);
+
+    return HTTP.call('GET', creditsURI, {}, (error, result) => {
+      Session.set('queryingActive', false);
+
       if (error) {
         throw new Meteor.Error('Error requesting data from TheMovieDB', error);
       }
@@ -56,12 +65,22 @@ const TheMovieDB = {
   /**
    *
    */
+  getCreditsData: () => Session.get('creditsData'),
+
+  /**
+   *
+   */
+  clearCreditsData: () => Session.set('creditsData', undefined),
+
+  /**
+   *
+   */
   getSearchResults: () => Session.get('searchResults'),
 
   /**
    *
    */
-  clearSearchResults: () => Session.set('searchResults', ''),
+  clearSearchResults: () => Session.set('searchResults', undefined),
 
   /**
    *
@@ -89,13 +108,47 @@ const TheMovieDB = {
       release_date,
     };
 
-    Session.set('movieData', data);
+    return Session.set('movieData', data);
   },
 
   /**
    *
    */
   getMovieData: () => Session.get('movieData'),
+
+  /**
+   *
+   */
+  clearMovieData: () => Session.set('movieData', undefined),
+
+  /**
+   *
+   */
+  setFullMovieData: () => {
+    const movieData = TheMovieDB.getMovieData();
+    const creditsData = TheMovieDB.getCreditsData();
+
+    if ((movieData && !movieData) || (creditsData && !creditsData)) {
+      return;
+    }
+
+    const structuredCredits = {
+      cast: creditsData.data.cast.slice(0, 5),
+      crew: creditsData.data.crew.slice(0, 5),
+    }
+
+    const fullMovieData = {
+      ...movieData,
+      ...structuredCredits,
+    }
+
+    console.log(fullMovieData)
+
+    TheMovieDB.clearMovieData();
+    TheMovieDB.clearCreditsData();
+
+    return Session.set('fullMovieData', fullMovieData);
+  },
 }
 
 export { TheMovieDB };
