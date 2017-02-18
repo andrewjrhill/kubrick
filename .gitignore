@@ -1,7 +1,6 @@
 # Project Specific
-settings/
 public/
-lib/scss/lib/
+settings/
 .meteor/dev_bundle
 
 # OSX

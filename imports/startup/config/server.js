@@ -9,7 +9,10 @@ WELCOME TO KUBRICK
 ------------------`);
 
   // A list of URLs to be trusted by the app to prevent injections/iFraming.
-  const trustedURLs = ['fonts.googleapis.com'];
+  const trustedURLs = [
+    'fonts.googleapis.com',
+    'api.themoviedb.org',
+  ];
 
   BrowserPolicy.framing.disallow();
   BrowserPolicy.content.disallowEval();

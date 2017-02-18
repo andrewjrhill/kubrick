@@ -17,7 +17,7 @@
     "reset-css": "2.0.20160720"
   },
   "scripts": {
-    "start": "meteor"
+    "start": "meteor --settings ./settings/kubrick-development.json"
   },
   "repository": {
     "type": "git",
