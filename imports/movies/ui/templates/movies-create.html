@@ -17,20 +17,22 @@
                 <span class="title-year">{{ movie.original_title }} ({{ movie.release_date }})</span>
                 <span class="description">{{ movie.overview }}</span>
               </li>
-            {{/with}}
+            {{/with }}
           {{/each }}
       </ul>
     {{/if }}
 
-    <label class="movie-type">
-      Select your Movie Type:
-      <select name="type">
-        <option value="" disabled selected>Choose One</option>
-        {{#each option in movieTypeOptions }}
-          <option value="{{ option }}">{{ option }}</option>
-        {{/each }}
-      </select>
-    </label>
+    {{#if metaDataExists }}
+      <label class="movie-type">
+        Select your Movie Type:
+        <select name="type">
+          <option value="" disabled selected>Choose One</option>
+          {{#each option in movieTypeOptions }}
+            <option value="{{ option }}">{{ option }}</option>
+          {{/each }}
+        </select>
+      </label>
+    {{/if }}
 
     {{#if moviesToCreate }}
       <p class="explainer">You are adding the following items to your collection:</p>
@@ -44,7 +46,7 @@
     {{/if }}
 
     <div class="buttons-wrapper">
-      <input class="button submit" type="submit" name="submit">
+      <input class="button submit" type="submit" name="submit" disabled={{ disableSubmit }}>
       <button class="button cancel" type="button" name="cancel">Cancel</button>
     </div>
   </form>

@@ -30,6 +30,7 @@ const TheMovieDB = {
         throw new Meteor.Error('Error requesting data from TheMovieDB', error);
       }
 
+      Session.set('appState', 'searchTheMovieDB');
       Session.set('searchResults', result);
     });
   },
@@ -58,6 +59,7 @@ const TheMovieDB = {
         throw new Meteor.Error('Error requesting data from TheMovieDB', error);
       }
 
+      Session.set('appState', 'setMovieCredits');
       Session.set('creditsData', result);
     });
   },
@@ -80,7 +82,10 @@ const TheMovieDB = {
   /**
    *
    */
-  clearSearchResults: () => Session.set('searchResults', undefined),
+  clearSearchResults: () => {
+    Session.set('appState', 'clearSearchResults');
+    Session.set('searchResults', undefined);
+  },
 
   /**
    *
@@ -109,7 +114,8 @@ const TheMovieDB = {
       release_year: release_date.split('-').slice(0, 1)[0],
     };
 
-    return Session.set('movieData', data);
+    Session.set('appState', 'setMovieData');
+    Session.set('movieData', data);
   },
 
   /**
@@ -125,7 +131,7 @@ const TheMovieDB = {
   /**
    *
    */
-  setmoviesList: (movieType) => {
+  setMoviesList: (movieType) => {
     const movieData = TheMovieDB.getMovieData();
     const creditsData = TheMovieDB.getCreditsData();
     const currentmoviesList = Session.get('moviesList');
@@ -149,7 +155,8 @@ const TheMovieDB = {
     TheMovieDB.clearMovieData();
     TheMovieDB.clearCreditsData();
 
-    return Session.set('moviesList', moviesList);
+    Session.set('appState', 'setMoviesList');
+    Session.set('moviesList', moviesList);
   },
 }
 

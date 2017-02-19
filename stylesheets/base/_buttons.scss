@@ -9,9 +9,9 @@ input[type="submit"] {
   display: block;
   cursor: pointer;
   font-weight: 400;
-  background: $grey;
   text-align: center;
   letter-spacing: 1px;
+  background-color: $grey;
   font-family: $headingFont;
   text-transform: uppercase;
   transition: background-color 0.2s linear;
@@ -56,10 +56,15 @@ input[type="submit"] {
   }
 }
 
-button[disabled],
-button[readonly] {
+input[readonly],
+input[disabled],
+button[readonly],
+button[disabled] {
   cursor: not-allowed;
-  background-color: $light;
+
+  &:hover {
+    background-color: $error;
+  }
 }
 
 .buttons-wrapper {

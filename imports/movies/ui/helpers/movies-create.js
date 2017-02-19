@@ -50,6 +50,25 @@ Template.moviesCreate.helpers({
 
     return options;
   },
+
+  /**
+   *
+   */
+  metaDataExists: () => Session.get('creditsData'),
+
+  /**
+   *
+   */
+  disableSubmit: () => {
+    const moviesList = Session.get('moviesList');
+    const appState = Session.get('appState');
+
+    if (moviesList.length === 0 || appState === 'setMovieCredits') {
+      return true;
+    }
+
+    return false;
+  },
 });
 
 //
@@ -110,7 +129,7 @@ Template.moviesCreate.events({
     const movieTitle = document.querySelector('.themoviedb input');
     const movieType = document.querySelector('.movie-type select');
 
-    TheMovieDB.setmoviesList(movieType.value);
+    TheMovieDB.setMoviesList(movieType.value);
 
     movieTitle.value = '';
     movieType.value = '';
