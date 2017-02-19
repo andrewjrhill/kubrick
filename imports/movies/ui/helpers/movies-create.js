@@ -7,39 +7,47 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Movies } from '/imports/movies/api/collection.js';
 import '/imports/movies/ui/templates/movies-create.html';
 
+Template.moviesCreate.helpers({
+  /**
+   *
+   */
+  moviesToCreate: () => Session.get('fullMovieData'),
+});
+
 Template.moviesCreate.events({
+  /**
+   *
+   */
+  'click .remove': (event, template) => {
+    const moviesToAdd = Session.get('fullMovieData');
+    const targetData = Template.currentData(event.currentTarget);
+
+    const removalIndex = moviesToAdd.findIndex(movie => movie.tmdb_id === targetData.tmdb_id);
+
+    const newMoviesToAdd = [
+      ...moviesToAdd.slice(0, removalIndex),
+      ...moviesToAdd.slice(removalIndex + 1),
+    ];
+
+    return Session.set('fullMovieData', newMoviesToAdd);
+  },
+
   /**
    *
    */
   'submit form': (event) => {
     event.preventDefault();
 
-    const {
-      banner,
-      cast,
-      crew,
-      description,
-      poster,
-      release_date,
-      title,
-      tmdb_id,
-    } = Session.get('fullMovieData');
+    const moviesToInsert = Session.get('fullMovieData');
 
-    return Movies.insert({
-      banner,
-      cast,
-      crew,
-      description,
-      poster,
-      release_date,
-      title,
-      tmdb_id,
-    }, (error) => {
-      if (error) {
-        throw new Meteor.Error('500', 'Error adding a new movie', error);
-      }
+    moviesToInsert.map((movie) => {
+      Movies.insert({ ...movie }, (error) => {
+        if (error) {
+          throw new Meteor.Error('500', 'Error adding a new movie', error);
+        }
 
-      FlowRouter.go('/movies');
+        FlowRouter.go('/movies');
+      });
     });
   },
 
@@ -51,6 +59,7 @@ Template.moviesCreate.events({
    */
   'click .cancel': (event) => {
     event.preventDefault();
+    Session.set('fullMovieData', []);
     FlowRouter.go(`/movies`);
   },
 });

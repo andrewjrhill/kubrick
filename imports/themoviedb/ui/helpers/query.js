@@ -6,7 +6,8 @@ import { TheMovieDB } from '/imports/themoviedb/api/TheMovieDB.js';
 import '/imports/themoviedb/ui/templates/query.html';
 
 Template.query.onCreated(() => {
-  Session.setDefault('queryingActive', false)
+  Session.set('queryingActive', false)
+  Session.set('fullMovieData', []);
 });
 
 Template.query.helpers({
@@ -46,7 +47,7 @@ Template.query.events({
     const searchURI = TheMovieDB.handleSearchURI(searchString);
 
     return TheMovieDB.searchTheMovieDB(searchURI);
-  }, 300),
+  }, 350),
 
   /**
    *
@@ -54,13 +55,12 @@ Template.query.events({
   'click .search-results li'(event, template) {
     const movieData = Template.currentData(event.currentTarget);
     const creditsURI = TheMovieDB.handleCreditsURI(movieData.id);
-    const inputField = document.querySelector('.themoviedb input');
 
     TheMovieDB.setMovieData(movieData);
     TheMovieDB.clearSearchResults();
     TheMovieDB.getMovieCredits(creditsURI)
 
-    inputField.value = movieData.title;
+    document.querySelector('.themoviedb input').value = '';
 
     Meteor.setTimeout(() => {
       TheMovieDB.setFullMovieData();

@@ -127,6 +127,7 @@ const TheMovieDB = {
   setFullMovieData: () => {
     const movieData = TheMovieDB.getMovieData();
     const creditsData = TheMovieDB.getCreditsData();
+    const currentFullMovieData = Session.get('fullMovieData');
 
     if ((movieData && !movieData) || (creditsData && !creditsData)) {
       return;
@@ -137,10 +138,13 @@ const TheMovieDB = {
       crew: creditsData.data.crew.slice(0, 5),
     }
 
-    const fullMovieData = {
-      ...movieData,
-      ...structuredCredits,
-    }
+    const fullMovieData = [
+      ...currentFullMovieData,
+      {
+        ...movieData,
+        ...structuredCredits,
+      }
+    ];
 
     TheMovieDB.clearMovieData();
     TheMovieDB.clearCreditsData();

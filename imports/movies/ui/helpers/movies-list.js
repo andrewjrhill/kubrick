@@ -16,7 +16,5 @@ Template.moviesList.helpers({
    * Gets all movies from the "Movies" Mongo collection.
    * @return { Object } list of movies
    */
-  movies() {
-    return Movies.find();
-  },
+  movies: () => Movies.find(),
 });
