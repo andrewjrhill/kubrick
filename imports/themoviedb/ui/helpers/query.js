@@ -35,7 +35,7 @@ Template.query.events({
   /**
    *
    */
-  'keyup .themoviedb input': _.debounce((event, template) => {
+  'keyup .themoviedb input, click .themoviedb input': _.debounce((event, template) => {
     const searchString = event.currentTarget.value;
     const whitespace = /\S/;
 
@@ -46,7 +46,7 @@ Template.query.events({
     const searchURI = TheMovieDB.handleSearchURI(searchString);
 
     return TheMovieDB.searchTheMovieDB(searchURI);
-  }, 500),
+  }, 300),
 
   /**
    *
@@ -54,10 +54,13 @@ Template.query.events({
   'click .search-results li'(event, template) {
     const movieData = Template.currentData(event.currentTarget);
     const creditsURI = TheMovieDB.handleCreditsURI(movieData.id);
+    const inputField = document.querySelector('.themoviedb input');
 
     TheMovieDB.setMovieData(movieData);
     TheMovieDB.clearSearchResults();
     TheMovieDB.getMovieCredits(creditsURI)
+
+    inputField.value = movieData.title;
 
     Meteor.setTimeout(() => {
       TheMovieDB.setFullMovieData();

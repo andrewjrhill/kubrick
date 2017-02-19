@@ -2,13 +2,11 @@
   <h1 class="primary">Add a new movie</h1>
 
   <form class="movies-create">
-    <!-- Title -->
-    {{> query label="Enter the title of your movie:" placeholder="2001: A Space Odyssey" }}
+    {{> query label="Enter a movie title:" placeholder="2001: A Space Odyssey" }}
 
-    <!-- Submit -->
-    <input class="button submit" type="submit" name="submit">
-
-    <!-- Cancel -->
-    <button class="button cancel" type="button" name="cancel">Cancel</button>
+    <div class="buttons-wrapper">
+      <input class="button submit" type="submit" name="submit">
+      <button class="button cancel" type="button" name="cancel">Cancel</button>
+    </div>
   </form>
 </template>

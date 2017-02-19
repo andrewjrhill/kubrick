@@ -20,7 +20,7 @@ input[type="submit"] {
   font-size: rem-calc(15px);
 
   &:not(:last-child) {
-    margin-bottom: rem-calc($rem-base);
+    margin-bottom: rem-calc(25px);
   }
 
   &:hover {
@@ -39,6 +39,14 @@ input[type="submit"] {
     top: rem-calc(3px);
   }
 
+  @media (min-width: $tablet) {
+    max-width: 25%;
+
+    &:not(:last-child) {
+      margin: 0 rem-calc(25px) 0 0;
+    }
+  }
+
   &.primary {
     background-color: $primary;
   }
@@ -48,4 +56,11 @@ button[disabled],
 button[readonly] {
   cursor: not-allowed;
   background-color: $light;
+}
+
+.buttons-wrapper {
+  @media (min-width: $tablet) {
+    display: flex;
+    flex-direction: row;
+  }
 }

@@ -20,8 +20,13 @@
     border-top-color: #0e0;
     border-right-color: #0dd;
     border-bottom-color: #f90;
-    transition: opacity 0.1s linear;
+    margin-top: rem-calc(-27px);
+    transition: opacity 0.2s linear, margin-top 0.3s linear;
     animation: spinner .6s linear infinite;
+
+    @media (min-width: $tablet) {
+      margin-top: rem-calc(-10px);
+    }
   }
 }
 
