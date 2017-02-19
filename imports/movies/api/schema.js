@@ -28,6 +28,11 @@ export const schema = new SimpleSchema([{
     label: 'banner',
     optional: true,
   },
+  movieType: {
+    type: String,
+    label: 'movie_type',
+    optional: false,
+  },
   release_date: {
     type: String,
     label: 'release_date',

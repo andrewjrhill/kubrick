@@ -4,11 +4,21 @@
   <form class="movies-create">
     {{> query label="Enter a movie title:" placeholder="2001: A Space Odyssey" }}
 
+    <label class="movie-type">
+      Select your Movie Type:
+      <select name="type">
+        <option value="" disabled selected>Choose One</option>
+        {{#each option in movieTypeOptions }}
+          <option value="{{ option }}">{{ option }}</option>
+        {{/each }}
+      </select>
+    </label>
+
     {{#if moviesToCreate }}
       <ul class="create-list">
         {{#each movie in moviesToCreate }}
           {{#with movie }}
-            <li>{{ title }}<span class="remove">remove</span></li>
+            <li>{{ title }}<span class="remove">Remove</span></li>
           {{/with }}
         {{/each}}
       </ul>

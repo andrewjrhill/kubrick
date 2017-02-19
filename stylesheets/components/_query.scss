@@ -3,7 +3,7 @@
 }
 
 .loading-indicator {
-  &.true::before {
+  &.active-true::before {
     opacity: 1;
   }
 

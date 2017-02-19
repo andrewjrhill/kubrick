@@ -4,6 +4,7 @@ import { Session } from 'meteor/session';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
+import { TheMovieDB } from '/imports/themoviedb/api/TheMovieDB.js';
 import { Movies } from '/imports/movies/api/collection.js';
 import '/imports/movies/ui/templates/movies-create.html';
 
@@ -13,6 +14,15 @@ Template.moviesCreate.helpers({
    *
    */
   moviesToCreate: () => Session.get('moviesList'),
+
+  /**
+   *
+   */
+  movieTypeOptions: () => {
+    const options = ['Blu-Ray', 'DVD', 'Digital Download', 'Other'];
+
+    return options;
+  },
 });
 
 //
@@ -32,6 +42,14 @@ Template.moviesCreate.events({
     ];
 
     return Session.set('moviesList', newMoviesList);
+  },
+
+  /**
+   *
+   */
+  'change .movie-type select': (event) => {
+    const movieType = document.querySelector('.movie-type select').value;
+    TheMovieDB.setmoviesList(movieType);
   },
 
   /**

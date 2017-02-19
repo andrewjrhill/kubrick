@@ -45,7 +45,7 @@ const TheMovieDB = {
   /**
    *
    */
-  getMovieCredits: (creditsURI) => {
+  setMovieCredits: (creditsURI) => {
     const baseData = Session.get('movieData');
     const { tmdb_id } = baseData;
 
@@ -125,7 +125,7 @@ const TheMovieDB = {
   /**
    *
    */
-  setmoviesList: () => {
+  setmoviesList: (movieType) => {
     const movieData = TheMovieDB.getMovieData();
     const creditsData = TheMovieDB.getCreditsData();
     const currentmoviesList = Session.get('moviesList');
@@ -139,6 +139,7 @@ const TheMovieDB = {
     const moviesList = [
       ...currentmoviesList,
       {
+        movieType,
         ...movieData,
         cast: cast.slice(0, 10),
         crew: crew,

@@ -58,14 +58,11 @@ Template.query.events({
     const creditsURI = TheMovieDB.handleCreditsURI(movieData.id);
 
     TheMovieDB.setMovieData(movieData);
+    TheMovieDB.setMovieCredits(creditsURI);
     TheMovieDB.clearSearchResults();
-    TheMovieDB.getMovieCredits(creditsURI)
 
-    document.querySelector('.themoviedb input').value = '';
+    document.querySelector('.themoviedb input').value = movieData.title;
 
-    Meteor.setTimeout(() => {
-      TheMovieDB.setmoviesList();
-      Session.set('queryingActive', false);
-    }, 500);
-  }
+    Session.set('queryingActive', false);
+  },
 });
