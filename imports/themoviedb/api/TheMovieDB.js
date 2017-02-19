@@ -106,6 +106,7 @@ const TheMovieDB = {
       title,
       tmdb_id,
       release_date,
+      release_year: release_date.split('-').slice(0, 1)[0],
     };
 
     return Session.set('movieData', data);

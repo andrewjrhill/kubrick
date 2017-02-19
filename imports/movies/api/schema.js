@@ -10,11 +10,13 @@ export const schema = new SimpleSchema([{
     type: [Object],
     label: 'cast',
     optional: true,
+    blackbox: true,
   },
   crew: {
     type: [Object],
-    label: 'cast',
+    label: 'crew',
     optional: true,
+    blackbox: true,
   },
   description: {
     type: String,
@@ -29,6 +31,11 @@ export const schema = new SimpleSchema([{
   release_date: {
     type: String,
     label: 'release_date',
+    optional: true,
+  },
+  release_year: {
+    type: String,
+    label: 'release_year',
     optional: true,
   },
   title: {

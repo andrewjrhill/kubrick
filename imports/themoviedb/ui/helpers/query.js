@@ -6,6 +6,7 @@ import { TheMovieDB } from '/imports/themoviedb/api/TheMovieDB.js';
 import '/imports/themoviedb/ui/templates/query.html';
 
 Template.query.onCreated(() => {
+  TheMovieDB.clearSearchResults();
   Session.set('queryingActive', false)
   Session.set('moviesList', []);
 });

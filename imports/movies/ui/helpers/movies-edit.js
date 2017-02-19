@@ -19,26 +19,32 @@ Template.moviesEdit.onCreated(() => {
 });
 
 Template.moviesEdit.helpers({
-  movie() {
+  /**
+   *
+   */
+  movie: () => {
     const templateInstance = Template.instance();
     return Movies.findOne({ _id: templateInstance.movieId });
   },
+
+  /**
+   *
+   */
+  getCast: () => {
+    const currentData = Template.currentData();
+    return currentData.cast.map((member) => member.name);
+  }
 });
 
 Template.moviesEdit.events({
   /**
-   * Edits a movie on submission.
    *
-   * @param { Object } javascript event object
-   * @return { Function } call to update data into the Movies collection
    */
   'submit form'(event, template) {
     event.preventDefault();
 
     const movie = Movies.findOne({ _id: template.movieId });
     const title = document.querySelector('.title input').value;
-    const year = document.querySelector('.year input').value;
-    const director = document.querySelector('.director input').value;
     const cast = document.querySelector('.cast textarea').value;
     const description = document.querySelector('.description textarea').value;
 
@@ -47,9 +53,6 @@ Template.moviesEdit.events({
     }, {
       $set: {
         title,
-        year,
-        director,
-        cast,
         description,
       },
     }, (error) => {
@@ -62,10 +65,7 @@ Template.moviesEdit.events({
   },
 
   /**
-   * Navigate back to the movies list view when clicking the cancel button.
    *
-   * @param { Object } javascript event object
-   * @return { Function } navigate to the movies list view
    */
   'click .cancel'(event, template) {
     event.preventDefault();
