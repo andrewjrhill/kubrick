@@ -11,7 +11,7 @@ Template.moviesCreate.helpers({
   /**
    *
    */
-  moviesToCreate: () => Session.get('fullMovieData'),
+  moviesToCreate: () => Session.get('moviesList'),
 });
 
 Template.moviesCreate.events({
@@ -19,17 +19,17 @@ Template.moviesCreate.events({
    *
    */
   'click .remove': (event, template) => {
-    const moviesToAdd = Session.get('fullMovieData');
+    const moviesList = Session.get('moviesList');
     const targetData = Template.currentData(event.currentTarget);
 
-    const removalIndex = moviesToAdd.findIndex(movie => movie.tmdb_id === targetData.tmdb_id);
+    const removalIndex = moviesList.findIndex(movie => movie.tmdb_id === targetData.tmdb_id);
 
-    const newMoviesToAdd = [
-      ...moviesToAdd.slice(0, removalIndex),
-      ...moviesToAdd.slice(removalIndex + 1),
+    const newMoviesList = [
+      ...moviesList.slice(0, removalIndex),
+      ...moviesList.slice(removalIndex + 1),
     ];
 
-    return Session.set('fullMovieData', newMoviesToAdd);
+    return Session.set('moviesList', newMoviesList);
   },
 
   /**
@@ -38,7 +38,7 @@ Template.moviesCreate.events({
   'submit form': (event) => {
     event.preventDefault();
 
-    const moviesToInsert = Session.get('fullMovieData');
+    const moviesToInsert = Session.get('moviesList');
 
     moviesToInsert.map((movie) => {
       Movies.insert({ ...movie }, (error) => {
@@ -59,7 +59,7 @@ Template.moviesCreate.events({
    */
   'click .cancel': (event) => {
     event.preventDefault();
-    Session.set('fullMovieData', []);
+    Session.set('moviesList', []);
     FlowRouter.go(`/movies`);
   },
 });

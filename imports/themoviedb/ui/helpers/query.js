@@ -7,7 +7,7 @@ import '/imports/themoviedb/ui/templates/query.html';
 
 Template.query.onCreated(() => {
   Session.set('queryingActive', false)
-  Session.set('fullMovieData', []);
+  Session.set('moviesList', []);
 });
 
 Template.query.helpers({
@@ -63,7 +63,7 @@ Template.query.events({
     document.querySelector('.themoviedb input').value = '';
 
     Meteor.setTimeout(() => {
-      TheMovieDB.setFullMovieData();
+      TheMovieDB.setmoviesList();
       Session.set('queryingActive', false);
     }, 500);
   }

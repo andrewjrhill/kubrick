@@ -124,32 +124,30 @@ const TheMovieDB = {
   /**
    *
    */
-  setFullMovieData: () => {
+  setmoviesList: () => {
     const movieData = TheMovieDB.getMovieData();
     const creditsData = TheMovieDB.getCreditsData();
-    const currentFullMovieData = Session.get('fullMovieData');
+    const currentmoviesList = Session.get('moviesList');
 
     if ((movieData && !movieData) || (creditsData && !creditsData)) {
       return;
     }
 
-    const structuredCredits = {
-      cast: creditsData.data.cast.slice(0, 5),
-      crew: creditsData.data.crew.slice(0, 5),
-    }
+    const { cast, crew } = creditsData.data;
 
-    const fullMovieData = [
-      ...currentFullMovieData,
+    const moviesList = [
+      ...currentmoviesList,
       {
         ...movieData,
-        ...structuredCredits,
+        cast: cast.slice(0, 10),
+        crew: crew.slice(0, 10),
       }
     ];
 
     TheMovieDB.clearMovieData();
     TheMovieDB.clearCreditsData();
 
-    return Session.set('fullMovieData', fullMovieData);
+    return Session.set('moviesList', moviesList);
   },
 }
 
