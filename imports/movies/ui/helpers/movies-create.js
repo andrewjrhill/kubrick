@@ -4,12 +4,39 @@ import { Session } from 'meteor/session';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
-import { TheMovieDB } from '/imports/themoviedb/api/TheMovieDB.js';
+import { TheMovieDB } from '/imports/movies/api/TheMovieDB.js';
 import { Movies } from '/imports/movies/api/collection.js';
 import '/imports/movies/ui/templates/movies-create.html';
 
 //
+Template.moviesCreate.onCreated(() => {
+  TheMovieDB.clearSearchResults();
+  Session.set('queryingActive', false)
+  Session.set('moviesList', []);
+});
+
+//
 Template.moviesCreate.helpers({
+  /**
+   *
+   */
+  searchResults: () => {
+    const searchResults = TheMovieDB.getSearchResults();
+
+    if (searchResults && !searchResults) {
+      return;
+    }
+
+    const movies = searchResults ? searchResults.data.results : [];
+
+    return movies.slice(0, 5);
+  },
+
+  /**
+   *
+   */
+  querying: () => Session.get('queryingActive'),
+
   /**
    *
    */
@@ -27,6 +54,38 @@ Template.moviesCreate.helpers({
 
 //
 Template.moviesCreate.events({
+  /**
+   *
+   */
+  'keyup .themoviedb input, click .themoviedb input': _.debounce((event, template) => {
+    const searchString = event.currentTarget.value;
+    const whitespace = /\S/;
+
+    if (!(whitespace.test(searchString))) {
+      return TheMovieDB.clearSearchResults();
+    }
+
+    const searchURI = TheMovieDB.handleSearchURI(searchString);
+
+    return TheMovieDB.searchTheMovieDB(searchURI);
+  }, 350),
+
+  /**
+   *
+   */
+  'click .search-results li'(event, template) {
+    const movieData = Template.currentData(event.currentTarget);
+    const creditsURI = TheMovieDB.handleCreditsURI(movieData.id);
+
+    TheMovieDB.setMovieData(movieData);
+    TheMovieDB.setMovieCredits(creditsURI);
+    TheMovieDB.clearSearchResults();
+
+    document.querySelector('.themoviedb input').value = movieData.title;
+
+    Session.set('queryingActive', false);
+  },
+
   /**
    *
    */

@@ -3,8 +3,6 @@ import { Tracker } from 'meteor/tracker';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
-import { TheMovieDB } from '/imports/themoviedb';
-
 import { Movies } from '/imports/movies/api/collection.js';
 import '/imports/movies/ui/templates/movies-edit.html';
 

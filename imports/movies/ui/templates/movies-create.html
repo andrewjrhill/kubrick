@@ -2,7 +2,25 @@
   <h1 class="primary">Add a new movie</h1>
 
   <form class="movies-create">
-    {{> query label="Enter a movie title:" placeholder="2001: A Space Odyssey" }}
+    <div class="loading-indicator active-{{ querying }}">&nbsp;</div>
+
+    <label class="themoviedb" required>
+      Enter a movie title:
+      <input type="text" name="title" placeholder="2001: A Space Odyssey" value="" autocomplete="off">
+    </label>
+
+    {{#if searchResults }}
+      <ul class="search-results">
+          {{#each movie in searchResults }}
+            {{#with movie }}
+              <li>
+                <span class="title-year">{{ movie.original_title }} ({{ movie.release_date }})</span>
+                <span class="description">{{ movie.overview }}</span>
+              </li>
+            {{/with}}
+          {{/each }}
+      </ul>
+    {{/if }}
 
     <label class="movie-type">
       Select your Movie Type:

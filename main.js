@@ -6,4 +6,3 @@ import '/imports/startup';
 
 // Components
 import '/imports/movies';
-import '/imports/themoviedb';
