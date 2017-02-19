@@ -23,6 +23,11 @@ export const schema = new SimpleSchema([{
     label: 'description',
     optional: true,
   },
+  location: {
+    type: String,
+    label: 'location',
+    optional: true,
+  },
   poster: {
     type: String,
     label: 'banner',

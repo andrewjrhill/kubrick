@@ -11,12 +11,19 @@ import '/imports/movies/ui/templates/movies-create.html';
 //
 Template.moviesCreate.onCreated(() => {
   TheMovieDB.clearSearchResults();
-  Session.set('queryingActive', false)
+  Session.set('queryingState', false)
   Session.set('moviesList', []);
 });
 
 //
 Template.moviesCreate.helpers({
+  /**
+   *
+   */
+  querying: () => Session.get('queryingState'),
+  moviesToCreate: () => Session.get('moviesList'),
+  setMovieCredits: () => Session.get('appState') === 'setMovieCredits',
+
   /**
    *
    */
@@ -35,33 +42,11 @@ Template.moviesCreate.helpers({
   /**
    *
    */
-  querying: () => Session.get('queryingActive'),
-
-  /**
-   *
-   */
-  moviesToCreate: () => Session.get('moviesList'),
-
-  /**
-   *
-   */
-  movieTypeOptions: () => {
-    const options = ['Blu-Ray', 'DVD', 'Digital Download', 'Other'];
-
-    return options;
-  },
-
-  /**
-   *
-   */
-  metaDataExists: () => Session.get('creditsData'),
-
-  /**
-   *
-   */
   disableSubmit: () => {
     const moviesList = Session.get('moviesList');
     const appState = Session.get('appState');
+
+    console.log(appState);
 
     if (moviesList.length === 0 || appState === 'setMovieCredits') {
       return true;
@@ -86,7 +71,7 @@ Template.moviesCreate.events({
 
     const searchURI = TheMovieDB.handleSearchURI(searchString);
 
-    return TheMovieDB.searchTheMovieDB(searchURI);
+    TheMovieDB.searchTheMovieDB(searchURI);
   }, 350),
 
   /**
@@ -102,7 +87,7 @@ Template.moviesCreate.events({
 
     document.querySelector('.themoviedb input').value = movieData.title;
 
-    Session.set('queryingActive', false);
+    Session.set('queryingState', false);
   },
 
   /**
@@ -125,14 +110,16 @@ Template.moviesCreate.events({
   /**
    *
    */
-  'change .movie-type select': (event) => {
-    const movieTitle = document.querySelector('.themoviedb input');
-    const movieType = document.querySelector('.movie-type select');
+  'change .type select': (event, template) => {
+    const title = document.querySelector('.themoviedb input');
+    const location = document.querySelector('.location input');
+    const type = document.querySelector('.type select');
 
-    TheMovieDB.setMoviesList(movieType.value);
+    console.log(type.value, location.value);
 
-    movieTitle.value = '';
-    movieType.value = '';
+    TheMovieDB.setMoviesList(type.value, location.value);
+
+    [title, type, location].map(input => input.value = '');
   },
 
   /**

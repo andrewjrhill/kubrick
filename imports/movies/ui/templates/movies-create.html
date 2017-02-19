@@ -22,20 +22,26 @@
       </ul>
     {{/if }}
 
-    {{#if metaDataExists }}
-      <label class="movie-type">
+    {{#if setMovieCredits }}
+      <label class="location" required>
+        Where is this movie located?
+        <input type="text" name="title" placeholder="Loaned to Andrew Hill" value="" autocomplete="off">
+      </label>
+
+      <label class="type">
         Select your Movie Type:
         <select name="type">
           <option value="" disabled selected>Choose One</option>
-          {{#each option in movieTypeOptions }}
-            <option value="{{ option }}">{{ option }}</option>
-          {{/each }}
+          <option value="Blu-Ray">Blu-Ray</option>
+          <option value="DVD">DVD</option>
+          <option value="Digital Download">Digital Download</option>
+          <option value="Other">Other</option>
         </select>
       </label>
     {{/if }}
 
     {{#if moviesToCreate }}
-      <p class="explainer">You are adding the following items to your collection:</p>
+      <p class="explainer">You are adding the following items to your collection. Feel free to add more before submitting:</p>
       <ul class="create-list">
         {{#each movie in moviesToCreate }}
           {{#with movie }}

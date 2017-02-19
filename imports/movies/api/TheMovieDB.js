@@ -21,10 +21,10 @@ const TheMovieDB = {
    *
    */
   searchTheMovieDB: (endpointURI) => {
-    Session.set('queryingActive', true);
+    Session.set('queryingState', true);
 
     return HTTP.call('GET', endpointURI, {}, (error, result) => {
-      Session.set('queryingActive', false);
+      Session.set('queryingState', false);
 
       if (error) {
         throw new Meteor.Error('Error requesting data from TheMovieDB', error);
@@ -50,10 +50,10 @@ const TheMovieDB = {
     const baseData = Session.get('movieData');
     const { tmdb_id } = baseData;
 
-    Session.set('queryingActive', true);
+    Session.set('queryingState', true);
 
     return HTTP.call('GET', creditsURI, {}, (error, result) => {
-      Session.set('queryingActive', false);
+      Session.set('queryingState', false);
 
       if (error) {
         throw new Meteor.Error('Error requesting data from TheMovieDB', error);
@@ -131,7 +131,7 @@ const TheMovieDB = {
   /**
    *
    */
-  setMoviesList: (movieType) => {
+  setMoviesList: (type, location) => {
     const movieData = TheMovieDB.getMovieData();
     const creditsData = TheMovieDB.getCreditsData();
     const currentmoviesList = Session.get('moviesList');
@@ -145,7 +145,8 @@ const TheMovieDB = {
     const moviesList = [
       ...currentmoviesList,
       {
-        movie_type: movieType,
+        location,
+        movie_type: type,
         ...movieData,
         cast: cast.slice(0, 10),
         crew: crew,

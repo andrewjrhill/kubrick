@@ -38,7 +38,7 @@ Template.moviesEdit.events({
 
     const movie = Movies.findOne({ _id: template.movieId });
     const title = document.querySelector('.title input').value;
-    const cast = document.querySelector('.cast textarea').value;
+    const location = document.querySelector('.location input').value;
     const description = document.querySelector('.description textarea').value;
 
     return Movies.update({
@@ -46,6 +46,7 @@ Template.moviesEdit.events({
     }, {
       $set: {
         title,
+        location,
         description,
       },
     }, (error) => {
