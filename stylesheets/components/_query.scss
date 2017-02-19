@@ -21,7 +21,8 @@
     border-right-color: #0dd;
     border-bottom-color: #f90;
     margin-top: rem-calc(-27px);
-    transition: opacity 0.2s linear, margin-top 0.3s linear;
+    transition: opacity 0.2s linear,
+                margin-top 0.3s linear;
     animation: spinner .6s linear infinite;
 
     @media (min-width: $tablet) {
@@ -41,7 +42,8 @@
     cursor: pointer;
     font-weight: 400;
     background-color: $white;
-    transition: background-color 0.3s linear, color 0.3s linear;
+    transition: background-color 0.3s linear,
+                color 0.3s linear;
     font-size: rem-calc(15px);
     padding: rem-calc(10px);
 

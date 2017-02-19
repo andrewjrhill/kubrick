@@ -7,6 +7,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Movies } from '/imports/movies/api/collection.js';
 import '/imports/movies/ui/templates/movies-create.html';
 
+//
 Template.moviesCreate.helpers({
   /**
    *
@@ -14,6 +15,7 @@ Template.moviesCreate.helpers({
   moviesToCreate: () => Session.get('moviesList'),
 });
 
+//
 Template.moviesCreate.events({
   /**
    *
@@ -52,10 +54,7 @@ Template.moviesCreate.events({
   },
 
   /**
-   * Navigate back to the movies list view when clicking the cancel button.
    *
-   * @param { Object } javascript event object
-   * @return { Function } navigate to the movies list view
    */
   'click .cancel': (event) => {
     event.preventDefault();

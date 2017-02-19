@@ -31,7 +31,8 @@
       letter-spacing: 2px;
       border: 1px solid $white;
       background-color: transparent;
-      transition: color 0.3s linear, background-color 0.3s linear;
+      transition: color 0.3s linear,
+                  background-color 0.3s linear;
       padding: rem-calc(5px 15px);
       font-size: rem-calc(18px);
 
@@ -59,7 +60,8 @@
       position: relative;
       text-transform: lowercase;
       background-color: transparent;
-      transition: color 0.3s linear, background-color 0.3s linear;
+      transition: color 0.3s linear,
+                  background-color 0.3s linear;
       padding: rem-calc(10px 15px);
       font-size: rem-calc(16px);
 

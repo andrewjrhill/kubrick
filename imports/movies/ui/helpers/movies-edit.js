@@ -8,6 +8,7 @@ import { TheMovieDB } from '/imports/themoviedb';
 import { Movies } from '/imports/movies/api/collection.js';
 import '/imports/movies/ui/templates/movies-edit.html';
 
+//
 Template.moviesEdit.onCreated(() => {
   const templateInstance = Template.instance();
 
@@ -18,6 +19,7 @@ Template.moviesEdit.onCreated(() => {
   });
 });
 
+//
 Template.moviesEdit.helpers({
   /**
    *
@@ -26,16 +28,9 @@ Template.moviesEdit.helpers({
     const templateInstance = Template.instance();
     return Movies.findOne({ _id: templateInstance.movieId });
   },
-
-  /**
-   *
-   */
-  getCast: () => {
-    const currentData = Template.currentData();
-    return currentData.cast.map((member) => member.name);
-  }
 });
 
+//
 Template.moviesEdit.events({
   /**
    *

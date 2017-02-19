@@ -141,7 +141,7 @@ const TheMovieDB = {
       {
         ...movieData,
         cast: cast.slice(0, 10),
-        crew: crew.slice(0, 10),
+        crew: crew,
       }
     ];
 

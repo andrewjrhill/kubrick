@@ -55,17 +55,19 @@
           min-width: rem-calc(150px);
           height: rem-calc(230px);
           width: rem-calc(150px);
-          top: rem-calc(-110px);
+          top: rem-calc(-120px);
         }
       }
 
       .title {
         width: 100%;
-        transition: font-size 0.3s linear;
+        transition: font-size 0.3s linear,
+                    margin-top 0.3s linear;
         margin-left: rem-calc(15px);
         font-size: rem-calc(20px);
 
         @media (min-width: $tablet) {
+          margin-top: rem-calc(10px);
           font-size: rem-calc(30px);
 
           &:after {
@@ -84,39 +86,11 @@
       position: relative;
 
       li {
-        margin-bottom: rem-calc(15px);
-      }
-    }
-
-    .description,
-    .cast ul {
-      line-height: rem-calc(22px);
-    }
-
-    .cast {
-      margin-top: rem-calc(15px);
-    }
-  }
-
-  .buttons {
-    margin-top: rem-calc(50px);
-
-    @media (min-width: $tablet) {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-    }
-
-    button {
-      margin: 0 auto rem-calc(20px) auto;
-      width: rem-calc(280);
-
-      @media (min-width: $tablet) {
-        margin: rem-calc(20px);
+        line-height: rem-calc(24px);
 
         &:not(:last-child) {
-          margin-right: 0;
-        };
+          margin-bottom: rem-calc(20px);
+        }
       }
     }
   }

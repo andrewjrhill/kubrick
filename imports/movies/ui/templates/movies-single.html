@@ -4,6 +4,7 @@
       <div class="overlay">&nbsp;</div>
       <!-- <button class="edit-movie">Edit Movie</button> -->
     </div>
+
     <div class="wrapper">
       <div class="content">
         <div class="poster" style="background-image: url('{{ poster  }}')">&nbsp;</div>
@@ -11,17 +12,14 @@
       </div>
       <ul class="details">
         <li class="release-date"><span class="category">Release Date:</span> {{ release_date }}</li>
-        <!-- <li class="director "><span class="category">Director:</span> {{ director }}</li> -->
-        <li class="description ">{{ description }}</li>
+        <li class="director"><span class="category">Directors:</span> {{ getCrewMember "Director" }}</li>
+        <li class="writer"><span class="category">Writers:</span> {{ getCrewMember "Writer" }}</li>
+        <li class="description "><span class="category">Description:</span> {{ description }}</li>
+        <li class="cast"><span class="category">Cast:</span> {{ cast }}</li>
       </ul>
-      <!-- <div class="cast">
-        <p class="category">Cast: </p>
-        <ul>
-          <li class="cast ">{{ cast }}</li>
-        </ul>
-      </div> -->
     </div>
-    <div class="buttons">
+
+    <div class="buttons-wrapper">
       <button class="edit">Edit</button>
       <button class="delete">Delete</button>
     </div>
