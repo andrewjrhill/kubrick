@@ -49,26 +49,26 @@ Template.moviesSingle.helpers({
   /**
    *
    */
-  getCrewMember: (job) => {
+  departmentMembers: (department) => {
     const templateInstance = Template.instance();
     const movie = Movies.findOne({ _id: templateInstance.movieId });
 
-    const member = movie.crew
-      .map(crew => crew.job === job ? crew.name : '')
-      .map(member => member !== '' ? member : '')
+    const members = movie.crew
+      .map(crew => crew.department === department ? crew.name : '')
+      .map(member => member)
       .filter(member => member !== '');
 
-    if (member.length === 0) {
+    if (members.length === 0) {
       return 'Unknown';
     }
 
-    return member.join(', ');
+    return members.join(', ');
   },
 
   /**
    *
    */
-  cast: () => {
+  castMembers: () => {
     const templateInstance = Template.instance();
     const movie = Movies.findOne({ _id: templateInstance.movieId });
     const cast = movie.cast.map((member) => member.name);

@@ -47,8 +47,8 @@ const TheMovieDB = {
   /**
    *
    */
-  setMovieCredits: (creditsURI) => {
-    const baseData = State.get.movieData();
+  setCreditsData: (creditsURI) => {
+    const baseData = State.get.rawData();
     const { tmdb_id } = baseData;
 
     State.set.querying(true);
@@ -60,7 +60,7 @@ const TheMovieDB = {
         throw new Meteor.Error('Error requesting data from TheMovieDB', error);
       }
 
-      State.set.status('setMovieCredits');
+      State.set.status('setCreditsData');
       State.set.creditsData(result);
     });
   },
@@ -76,7 +76,7 @@ const TheMovieDB = {
   /**
    *
    */
-  setMovieData: (rawData) => {
+  setRawData: (rawData) => {
     if (!rawData) {
       throw new Meteor.Error('422', 'No raw movie data found');
     }
@@ -100,40 +100,40 @@ const TheMovieDB = {
       release_year: release_date.split('-').slice(0, 1)[0],
     };
 
-    State.set.status('setMovieData');
-    State.set.movieData(data);
+    State.set.status('setRawData');
+    State.set.rawData(data);
   },
 
   /**
    *
    */
-  setMoviesList: (type, location) => {
-    const movieData = State.get.movieData();
+  addToSubmisionData: (type, location) => {
+    const rawData = State.get.rawData();
     const creditsData = State.get.creditsData();
-    const currentmoviesList = State.get.moviesList();
+    const currentsubmissionData = State.get.submissionData();
 
-    if ((movieData && !movieData) || (creditsData && !creditsData)) {
+    if ((rawData && !rawData) || (creditsData && !creditsData)) {
       return;
     }
 
     const { cast, crew } = creditsData.data;
 
-    const moviesList = [
-      ...currentmoviesList,
+    const submissionData = [
+      ...currentsubmissionData,
       {
         location,
         movie_type: type,
-        ...movieData,
+        ...rawData,
         cast: cast.slice(0, 10),
         crew: crew,
       }
     ];
 
-    State.clear.movieData();
+    State.clear.rawData();
     State.clear.creditsData();
 
-    State.set.status('setMoviesList');
-    State.set.moviesList(moviesList);
+    State.set.status('addToSubmisionData');
+    State.set.submissionData(submissionData);
   },
 }
 

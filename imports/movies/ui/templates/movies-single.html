@@ -14,11 +14,11 @@
 
       <ul class="details">
         <li><span>Release Date: </span>{{ release_date }}</li>
-        <li><span>Directors: </span>{{ getCrewMember "Director" }}</li>
-        <li><span>Writers: </span>{{ getCrewMember "Writer" }}</li>
+        <li><span>Directors: </span>{{ departmentMembers "Directing" }}</li>
+        <li><span>Writers: </span>{{ departmentMembers "Writing" }}</li>
         <li><span>Location: </span>{{ location }}</li>
         <li><span>Description: </span>{{ description }}</li>
-        <li><span>Cast: </span>{{ cast }}</li>
+        <li><span>Cast: </span>{{ castMembers }}</li>
       </ul>
     </div>
 

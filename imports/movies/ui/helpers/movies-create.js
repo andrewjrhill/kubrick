@@ -13,7 +13,7 @@ import '/imports/movies/ui/templates/movies-create.html';
 Template.moviesCreate.onCreated(() => {
   TheMovieDB.clearSearchResults();
   State.clear.status();
-  State.clear.moviesList();
+  State.clear.submissionData();
 });
 
 //
@@ -22,8 +22,8 @@ Template.moviesCreate.helpers({
    *
    */
   querying: () => State.get.querying(),
-  moviesToCreate: () => State.get.moviesList(),
-  setMovieCredits: () => State.get.status() === 'setMovieCredits',
+  submissionData: () => State.get.submissionData(),
+  creditsData: () => State.get.status() === 'setCreditsData',
 
   /**
    *
@@ -44,10 +44,10 @@ Template.moviesCreate.helpers({
    *
    */
   disableSubmit: () => {
-    const moviesList = State.get.moviesList();
+    const submissionData = State.get.submissionData();
     const status = State.get.status();
 
-    if (moviesList && moviesList.length === 0 || status === 'setMovieCredits') {
+    if (submissionData && submissionData.length === 0 || status === 'setCreditsData') {
       return true;
     }
 
@@ -77,33 +77,16 @@ Template.moviesCreate.events({
    *
    */
   'click .search-results li'(event, template) {
-    const movieData = Template.currentData(event.currentTarget);
-    const creditsURI = TheMovieDB.handleCreditsURI(movieData.id);
+    const rawData = Template.currentData(event.currentTarget);
+    const creditsURI = TheMovieDB.handleCreditsURI(rawData.id);
 
-    TheMovieDB.setMovieData(movieData);
-    TheMovieDB.setMovieCredits(creditsURI);
+    TheMovieDB.setRawData(rawData);
+    TheMovieDB.setCreditsData(creditsURI);
     TheMovieDB.clearSearchResults();
 
-    document.querySelector('.themoviedb input').value = movieData.title;
+    document.querySelector('.themoviedb input').value = rawData.title;
 
     State.clear.status();
-  },
-
-  /**
-   *
-   */
-  'click .remove': (event, template) => {
-    const moviesList = State.get.moviesList();
-    const targetData = Template.currentData(event.currentTarget);
-
-    const removalIndex = moviesList.findIndex(movie => movie.tmdb_id === targetData.tmdb_id);
-
-    const newMoviesList = [
-      ...moviesList.slice(0, removalIndex),
-      ...moviesList.slice(removalIndex + 1),
-    ];
-
-    return State.set.moviesList(newMoviesList);
   },
 
   /**
@@ -113,15 +96,33 @@ Template.moviesCreate.events({
     const title = document.querySelector('.themoviedb input');
     const location = document.querySelector('.location input');
     const type = document.querySelector('.type select');
+
     const whitespace = /\S/;
 
     if (!(whitespace.test(location.value))) {
       location.value = 'Unknown';
     }
 
-    TheMovieDB.setMoviesList(type.value, location.value);
+    TheMovieDB.addToSubmisionData(type.value, location.value);
 
     [title, type, location].map(input => input.value = '');
+  },
+
+  /**
+   *
+   */
+  'click .remove': (event, template) => {
+    const submissionData = State.get.submissionData();
+    const targetData = Template.currentData(event.currentTarget);
+
+    const removalIndex = submissionData.findIndex(movie => movie.tmdb_id === targetData.tmdb_id);
+
+    const newSubmisionData = [
+      ...submissionData.slice(0, removalIndex),
+      ...submissionData.slice(removalIndex + 1),
+    ];
+
+    return State.set.submissionData(newSubmisionData);
   },
 
   /**
@@ -130,9 +131,9 @@ Template.moviesCreate.events({
   'submit form': (event) => {
     event.preventDefault();
 
-    const moviesToInsert = State.get.moviesList();
+    const submissionData = State.get.submissionData();
 
-    moviesToInsert.map((movie) => {
+    submissionData.map((movie) => {
       Movies.insert({ ...movie }, (error) => {
         if (error) {
           throw new Meteor.Error('500', 'Error adding a new movie', error);
@@ -148,7 +149,7 @@ Template.moviesCreate.events({
    */
   'click .cancel': (event) => {
     event.preventDefault();
-    State.clear.moviesList();
+    State.clear.submissionData();
     FlowRouter.go(`/movies`);
   },
 });

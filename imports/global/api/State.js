@@ -6,9 +6,9 @@ import { Session } from 'meteor/session';
 const State = {
   get: {
     status: () => Session.get('status'),
+    rawData: () => Session.get('rawData'),
     querying: () => Session.get('querying'),
-    movieData: () => Session.get('movieData'),
-    moviesList: () => Session.get('moviesList'),
+    submissionData: () => Session.get('submissionData'),
     creditsData: () => Session.get('creditsData'),
     searchResults: () => Session.get('searchResults'),
   },
@@ -16,8 +16,8 @@ const State = {
   set: {
     status: (value) => Session.set('status', value),
     querying: (value) => Session.set('querying', value),
-    movieData: (value) => Session.set('movieData', value),
-    moviesList: (value) => Session.set('moviesList', value),
+    rawData: (value) => Session.set('rawData', value),
+    submissionData: (value) => Session.set('submissionData', value),
     creditsData: (value) => Session.set('creditsData', value),
     searchResults: (value) => Session.set('searchResults', value),
   },
@@ -25,8 +25,8 @@ const State = {
   clear: {
     status: () => Session.set('status', false),
     querying: () => Session.set('querying', undefined),
-    movieData: () => Session.set('movieData', undefined),
-    moviesList: () => Session.set('moviesList', []),
+    rawData: () => Session.set('rawData', undefined),
+    submissionData: () => Session.set('submissionData', []),
     creditsData: () => Session.set('creditsData', undefined),
     searchResults: () => Session.set('searchResults', undefined),
   },
