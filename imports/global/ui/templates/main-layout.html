@@ -1,6 +1,8 @@
 <template name="mainLayout">
   {{> header }}
 
+  {{> sAlert }}
+
   <main class="main {{ routeName }}">
     {{> Template.dynamic template=content }}
   </main>

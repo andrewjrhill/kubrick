@@ -1,6 +1,7 @@
 import { _ } from 'meteor/underscore';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
+import { sAlert } from 'meteor/juliancwirko:s-alert';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
 import { TheMovieDB } from '/imports/movies/api/TheMovieDB.js';
@@ -136,12 +137,18 @@ Template.moviesCreate.events({
     submissionData.map((movie) => {
       Movies.insert({ ...movie }, (error) => {
         if (error) {
-          throw new Meteor.Error('500', 'Error adding a new movie', error);
+          return sAlert.error(`There was an error adding ${title} to your collection.`);
         }
 
         FlowRouter.go('/movies');
       });
     });
+
+    if (submissionData.length === 1) {
+      sAlert.success(`${submissionData[0].title} has been added to your collection.`);
+    } else {
+      sAlert.success('You have added several new movies to your collection.');
+    }
   },
 
   /**

@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { Template } from 'meteor/templating';
+import { sAlert } from 'meteor/juliancwirko:s-alert';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
 import { Movies } from '/imports/movies/api/collection.js';
@@ -51,8 +52,10 @@ Template.moviesEdit.events({
       },
     }, (error) => {
       if (error) {
-        throw new Meteor.Error('500', 'Error updating movie', error);
+        return sAlert.error(`There was an error editing ${title}.`);
       }
+
+      sAlert.success(`${title} has been successfully updated.`);
 
       FlowRouter.go(`/movies/${template.movieId}`);
     });

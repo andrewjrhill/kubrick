@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { Template } from 'meteor/templating';
+import { sAlert } from 'meteor/juliancwirko:s-alert';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
 import { Movies } from '/imports/movies/api/collection.js';
@@ -94,8 +95,12 @@ Template.moviesSingle.events({
    *
    */
   'click .delete'(event, template) {
-    const { _id } = Template.currentData(event.currentTarget);
+    const { _id, title } = Template.currentData(event.currentTarget);
+
     Movies.remove({ _id });
+
+    sAlert.warning(`You have deleted "${title}" from your collection.`);
+
     FlowRouter.go(`/`);
   },
 });
