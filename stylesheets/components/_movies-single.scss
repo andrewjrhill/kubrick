@@ -14,9 +14,24 @@
     }
 
     .overlay {
-      opacity: 0.5;
       height: 100%;
-      background-color: $darkest;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: flex-end;
+      background-color: rgba(31, 36, 45, 0.7);
+
+      img {
+        width: auto;
+        opacity: 0.6;
+        transition: height 0.3s linear;
+        margin: rem-calc(0 20px 20px 0);
+        height: rem-calc(35px);
+
+        @media (min-width: $tablet) {
+          height: rem-calc(50px);
+        }
+      }
     }
   }
 

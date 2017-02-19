@@ -1,7 +1,9 @@
 <template name="moviesSingle">
   {{#with movie}}
     <div class="banner" style="background-image: url('{{ banner }}')">
-      <div class="overlay">&nbsp;</div>
+      <div class="overlay">
+        <img src="{{ typeImageSource }}" alt="This movie is a {{ movie_type }}">
+      </div>
     </div>
 
     <div class="wrapper">
@@ -11,11 +13,10 @@
       </div>
 
       <ul class="details">
-        <li><span>Type: </span>{{ movie_type }}</li>
-        <li><span>Location: </span>{{ location }}</li>
         <li><span>Release Date: </span>{{ release_date }}</li>
         <li><span>Directors: </span>{{ getCrewMember "Director" }}</li>
         <li><span>Writers: </span>{{ getCrewMember "Writer" }}</li>
+        <li><span>Location: </span>{{ location }}</li>
         <li><span>Description: </span>{{ description }}</li>
         <li><span>Cast: </span>{{ cast }}</li>
       </ul>

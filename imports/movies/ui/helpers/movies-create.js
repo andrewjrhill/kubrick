@@ -46,8 +46,6 @@ Template.moviesCreate.helpers({
     const moviesList = Session.get('moviesList');
     const appState = Session.get('appState');
 
-    console.log(appState);
-
     if (moviesList.length === 0 || appState === 'setMovieCredits') {
       return true;
     }
@@ -114,8 +112,11 @@ Template.moviesCreate.events({
     const title = document.querySelector('.themoviedb input');
     const location = document.querySelector('.location input');
     const type = document.querySelector('.type select');
+    const whitespace = /\S/;
 
-    console.log(type.value, location.value);
+    if (!(whitespace.test(location.value))) {
+      location.value = 'Unknown';
+    }
 
     TheMovieDB.setMoviesList(type.value, location.value);
 

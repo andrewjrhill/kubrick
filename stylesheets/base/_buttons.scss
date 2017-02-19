@@ -83,6 +83,6 @@ button[disabled] {
   @media (min-width: $tablet) {
     display: flex;
     flex-direction: row;
-    margin: rem-calc(30px 0 0 0);
+    margin: rem-calc(30px 0 50px 0);
   }
 }

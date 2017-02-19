@@ -30,9 +30,28 @@ Template.moviesSingle.helpers({
   /**
    *
    */
+  typeImageSource: () => {
+    const templateInstance = Template.instance();
+    const movie = Movies.findOne({ _id: templateInstance.movieId });
+
+    switch (movie.movie_type) {
+      case 'DVD':
+        return '/images/logo-dvd.svg';
+      case 'Blu-Ray':
+        return '/images/logo-blu-ray.svg';
+      case 'Digital Download':
+        return '/images/logo-digital-download.svg';
+      default:
+        return '/images/logo-other.svg';
+    }
+  },
+
+  /**
+   *
+   */
   getCrewMember: (job) => {
     const templateInstance = Template.instance();
-    const movie =  Movies.findOne({ _id: templateInstance.movieId });
+    const movie = Movies.findOne({ _id: templateInstance.movieId });
 
     const member = movie.crew
       .map(crew => crew.job === job ? crew.name : '')
@@ -51,7 +70,7 @@ Template.moviesSingle.helpers({
    */
   cast: () => {
     const templateInstance = Template.instance();
-    const movie =  Movies.findOne({ _id: templateInstance.movieId });
+    const movie = Movies.findOne({ _id: templateInstance.movieId });
     const cast = movie.cast.map((member) => member.name);
 
     if (cast.length === 0) {
