@@ -139,7 +139,7 @@ const TheMovieDB = {
     const moviesList = [
       ...currentmoviesList,
       {
-        movieType,
+        movie_type: movieType,
         ...movieData,
         cast: cast.slice(0, 10),
         crew: crew,

@@ -91,6 +91,11 @@
         &:not(:last-child) {
           margin-bottom: rem-calc(20px);
         }
+
+        span {
+          color: $light;
+          margin: rem-calc(0 0 10px 0);
+        }
       }
     }
   }

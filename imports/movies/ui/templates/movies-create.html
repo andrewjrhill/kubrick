@@ -33,10 +33,11 @@
     </label>
 
     {{#if moviesToCreate }}
+      <p class="explainer">You are adding the following items to your collection:</p>
       <ul class="create-list">
         {{#each movie in moviesToCreate }}
           {{#with movie }}
-            <li>{{ title }}<span class="remove">Remove</span></li>
+            <li>{{ title }} - {{ movie_type }}<span class="remove">Remove</span></li>
           {{/with }}
         {{/each}}
       </ul>

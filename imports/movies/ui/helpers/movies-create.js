@@ -107,8 +107,13 @@ Template.moviesCreate.events({
    *
    */
   'change .movie-type select': (event) => {
-    const movieType = document.querySelector('.movie-type select').value;
-    TheMovieDB.setmoviesList(movieType);
+    const movieTitle = document.querySelector('.themoviedb input');
+    const movieType = document.querySelector('.movie-type select');
+
+    TheMovieDB.setmoviesList(movieType.value);
+
+    movieTitle.value = '';
+    movieType.value = '';
   },
 
   /**

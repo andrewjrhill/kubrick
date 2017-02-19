@@ -28,7 +28,7 @@ export const schema = new SimpleSchema([{
     label: 'banner',
     optional: true,
   },
-  movieType: {
+  movie_type: {
     type: String,
     label: 'movie_type',
     optional: false,

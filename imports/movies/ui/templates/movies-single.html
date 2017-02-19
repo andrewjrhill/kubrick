@@ -2,7 +2,6 @@
   {{#with movie}}
     <div class="banner" style="background-image: url('{{ banner }}')">
       <div class="overlay">&nbsp;</div>
-      <!-- <button class="edit-movie">Edit Movie</button> -->
     </div>
 
     <div class="wrapper">
@@ -10,12 +9,14 @@
         <div class="poster" style="background-image: url('{{ poster  }}')">&nbsp;</div>
         <h1 class="title">{{ title }}</h1>
       </div>
+
       <ul class="details">
-        <li class="release-date"><span class="category">Release Date:</span> {{ release_date }}</li>
-        <li class="director"><span class="category">Directors:</span> {{ getCrewMember "Director" }}</li>
-        <li class="writer"><span class="category">Writers:</span> {{ getCrewMember "Writer" }}</li>
-        <li class="description "><span class="category">Description:</span> {{ description }}</li>
-        <li class="cast"><span class="category">Cast:</span> {{ cast }}</li>
+        <li><span>Type: </span>{{ movie_type }}</li>
+        <li><span>Release Date: </span>{{ release_date }}</li>
+        <li><span>Directors: </span>{{ getCrewMember "Director" }}</li>
+        <li><span>Writers: </span>{{ getCrewMember "Writer" }}</li>
+        <li><span>Description: </span>{{ description }}</li>
+        <li><span>Cast: </span>{{ cast }}</li>
       </ul>
     </div>
 
