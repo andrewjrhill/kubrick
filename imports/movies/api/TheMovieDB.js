@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
-import { Session } from 'meteor/session';
 import { Tracker } from 'meteor/tracker';
+
+import { State } from '/imports/global/api/State.js';
 import { Movies } from '/imports/movies/api/collection.js';
 
 const TheMovieDB = {
@@ -21,17 +22,17 @@ const TheMovieDB = {
    *
    */
   searchTheMovieDB: (endpointURI) => {
-    Session.set('queryingState', true);
+    State.set.querying(true);
 
     return HTTP.call('GET', endpointURI, {}, (error, result) => {
-      Session.set('queryingState', false);
+      State.set.querying(false);
 
       if (error) {
         throw new Meteor.Error('Error requesting data from TheMovieDB', error);
       }
 
-      Session.set('appState', 'searchTheMovieDB');
-      Session.set('searchResults', result);
+      State.set.status('searchTheMovieDB');
+      State.set.searchResults(result);
     });
   },
 
@@ -47,44 +48,29 @@ const TheMovieDB = {
    *
    */
   setMovieCredits: (creditsURI) => {
-    const baseData = Session.get('movieData');
+    const baseData = State.get.movieData();
     const { tmdb_id } = baseData;
 
-    Session.set('queryingState', true);
+    State.set.querying(true);
 
     return HTTP.call('GET', creditsURI, {}, (error, result) => {
-      Session.set('queryingState', false);
+      State.set.querying(false);
 
       if (error) {
         throw new Meteor.Error('Error requesting data from TheMovieDB', error);
       }
 
-      Session.set('appState', 'setMovieCredits');
-      Session.set('creditsData', result);
+      State.set.status('setMovieCredits');
+      State.set.creditsData(result);
     });
   },
 
   /**
    *
    */
-  getCreditsData: () => Session.get('creditsData'),
-
-  /**
-   *
-   */
-  clearCreditsData: () => Session.set('creditsData', undefined),
-
-  /**
-   *
-   */
-  getSearchResults: () => Session.get('searchResults'),
-
-  /**
-   *
-   */
   clearSearchResults: () => {
-    Session.set('appState', 'clearSearchResults');
-    Session.set('searchResults', undefined);
+    State.set.status('clearSearchResults');
+    State.clear.searchResults();
   },
 
   /**
@@ -114,27 +100,17 @@ const TheMovieDB = {
       release_year: release_date.split('-').slice(0, 1)[0],
     };
 
-    Session.set('appState', 'setMovieData');
-    Session.set('movieData', data);
+    State.set.status('setMovieData');
+    State.set.movieData(data);
   },
 
   /**
    *
    */
-  getMovieData: () => Session.get('movieData'),
-
-  /**
-   *
-   */
-  clearMovieData: () => Session.set('movieData', undefined),
-
-  /**
-   *
-   */
   setMoviesList: (type, location) => {
-    const movieData = TheMovieDB.getMovieData();
-    const creditsData = TheMovieDB.getCreditsData();
-    const currentmoviesList = Session.get('moviesList');
+    const movieData = State.get.movieData();
+    const creditsData = State.get.creditsData();
+    const currentmoviesList = State.get.moviesList();
 
     if ((movieData && !movieData) || (creditsData && !creditsData)) {
       return;
@@ -153,11 +129,11 @@ const TheMovieDB = {
       }
     ];
 
-    TheMovieDB.clearMovieData();
-    TheMovieDB.clearCreditsData();
+    State.clear.movieData();
+    State.clear.creditsData();
 
-    Session.set('appState', 'setMoviesList');
-    Session.set('moviesList', moviesList);
+    State.set.status('setMoviesList');
+    State.set.moviesList(moviesList);
   },
 }
 

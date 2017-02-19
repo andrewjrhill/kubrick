@@ -1,18 +1,19 @@
 import { _ } from 'meteor/underscore';
 import { Meteor } from 'meteor/meteor';
-import { Session } from 'meteor/session';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
 import { TheMovieDB } from '/imports/movies/api/TheMovieDB.js';
+import { State } from '/imports/global/api/State.js';
+
 import { Movies } from '/imports/movies/api/collection.js';
 import '/imports/movies/ui/templates/movies-create.html';
 
 //
 Template.moviesCreate.onCreated(() => {
   TheMovieDB.clearSearchResults();
-  Session.set('queryingState', false)
-  Session.set('moviesList', []);
+  State.clear.status();
+  State.clear.moviesList();
 });
 
 //
@@ -20,15 +21,15 @@ Template.moviesCreate.helpers({
   /**
    *
    */
-  querying: () => Session.get('queryingState'),
-  moviesToCreate: () => Session.get('moviesList'),
-  setMovieCredits: () => Session.get('appState') === 'setMovieCredits',
+  querying: () => State.get.querying(),
+  moviesToCreate: () => State.get.moviesList(),
+  setMovieCredits: () => State.get.status() === 'setMovieCredits',
 
   /**
    *
    */
   searchResults: () => {
-    const searchResults = TheMovieDB.getSearchResults();
+    const searchResults = State.get.searchResults();
 
     if (searchResults && !searchResults) {
       return;
@@ -43,10 +44,10 @@ Template.moviesCreate.helpers({
    *
    */
   disableSubmit: () => {
-    const moviesList = Session.get('moviesList');
-    const appState = Session.get('appState');
+    const moviesList = State.get.moviesList();
+    const status = State.get.status();
 
-    if (moviesList.length === 0 || appState === 'setMovieCredits') {
+    if (moviesList && moviesList.length === 0 || status === 'setMovieCredits') {
       return true;
     }
 
@@ -85,14 +86,14 @@ Template.moviesCreate.events({
 
     document.querySelector('.themoviedb input').value = movieData.title;
 
-    Session.set('queryingState', false);
+    State.clear.status();
   },
 
   /**
    *
    */
   'click .remove': (event, template) => {
-    const moviesList = Session.get('moviesList');
+    const moviesList = State.get.moviesList();
     const targetData = Template.currentData(event.currentTarget);
 
     const removalIndex = moviesList.findIndex(movie => movie.tmdb_id === targetData.tmdb_id);
@@ -102,7 +103,7 @@ Template.moviesCreate.events({
       ...moviesList.slice(removalIndex + 1),
     ];
 
-    return Session.set('moviesList', newMoviesList);
+    return State.set.moviesList(newMoviesList);
   },
 
   /**
@@ -129,7 +130,7 @@ Template.moviesCreate.events({
   'submit form': (event) => {
     event.preventDefault();
 
-    const moviesToInsert = Session.get('moviesList');
+    const moviesToInsert = State.get.moviesList();
 
     moviesToInsert.map((movie) => {
       Movies.insert({ ...movie }, (error) => {
@@ -147,7 +148,7 @@ Template.moviesCreate.events({
    */
   'click .cancel': (event) => {
     event.preventDefault();
-    Session.set('moviesList', []);
+    State.clear.moviesList();
     FlowRouter.go(`/movies`);
   },
 });
