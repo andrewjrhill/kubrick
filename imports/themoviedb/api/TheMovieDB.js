@@ -100,9 +100,9 @@ const TheMovieDB = {
     } = rawData;
 
     const data = {
-      banner: `https://image.tmdb.org/t/p/w780${banner}`,
+      banner: banner ? `https://image.tmdb.org/t/p/w780${banner}` : '/images/placeholder-banner.jpg',
       description,
-      poster: `https://image.tmdb.org/t/p/w300_and_h450_bestv2${poster}`,
+      poster: poster ? `https://image.tmdb.org/t/p/w300_and_h450_bestv2${poster}` : '/images/placeholder-poster.jpg',
       title,
       tmdb_id,
       release_date,

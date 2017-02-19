@@ -71,11 +71,13 @@ button[readonly] {
     width: rem-calc(280);
 
     @media (min-width: $tablet) {
+      margin: rem-calc(0 20px 0 0);
     }
   }
 
   @media (min-width: $tablet) {
     display: flex;
     flex-direction: row;
+    margin: rem-calc(20px 0 0 0);
   }
 }
