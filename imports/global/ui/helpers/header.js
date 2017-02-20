@@ -62,7 +62,7 @@ Template.header.events({
    * Stores our search query to the session to be picked up by the
    * results() template helper.
    *
-   * @return {} Call to set the localSearchQuery state.
+   * @return { Method } Call to set the localSearchQuery state.
    */
   'keyup .search input, focus .search input': _.debounce((event) => {
     const value = event.target.value.trim();

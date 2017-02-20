@@ -9,9 +9,9 @@
       <input type="text" name="title" placeholder="Raiders of the Lost Ark" value="" autocomplete="off">
     </label>
 
-    {{#if localSearchResults }}
+    {{#if tmdbSearchResults }}
       <ul class="search-results">
-          {{#each movie in localSearchResults }}
+          {{#each movie in tmdbSearchResults }}
             {{#with movie }}
               <li>
                 <span class="title-year">{{ movie.original_title }} ({{ movie.release_date }})</span>

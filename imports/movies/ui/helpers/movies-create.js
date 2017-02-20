@@ -11,7 +11,7 @@ import '/imports/movies/ui/templates/movies-create.html';
 
 //
 Template.moviesCreate.onCreated(() => {
-  TheMovieDB.clearLocalSearchResults();
+  TheMovieDB.clearTMDBSearchResults();
   State.clear.status();
   State.clear.submissionData();
 });
@@ -23,19 +23,19 @@ Template.moviesCreate.helpers({
    */
   querying: () => State.get.querying(),
   submissionData: () => State.get.submissionData(),
-  creditsData: () => State.get.status() === 'setCreditsData',
+  creditsData: () => State.get.status() === 'getCreditsData',
 
   /**
    *
    */
-  localSearchResults: () => {
-    const localSearchResults = State.get.localSearchResults();
+  tmdbSearchResults: () => {
+    const tmdbSearchResults = State.get.tmdbSearchResults();
 
-    if (localSearchResults && !localSearchResults) {
+    if (tmdbSearchResults && !tmdbSearchResults) {
       return;
     }
 
-    const movies = localSearchResults ? localSearchResults.data.results : [];
+    const movies = tmdbSearchResults ? tmdbSearchResults.data.results : [];
 
     return movies.slice(0, 5);
   },
@@ -47,7 +47,7 @@ Template.moviesCreate.helpers({
     const submissionData = State.get.submissionData();
     const status = State.get.status();
 
-    if (submissionData && submissionData.length === 0 || status === 'setCreditsData') {
+    if (submissionData && submissionData.length === 0 || status === 'getCreditsData') {
       return true;
     }
 
@@ -65,7 +65,7 @@ Template.moviesCreate.events({
     const whitespace = /\S/;
 
     if (!(whitespace.test(searchString))) {
-      return TheMovieDB.clearLocalSearchResults();
+      return TheMovieDB.clearTMDBSearchResults();
     }
 
     const searchURI = TheMovieDB.handleSearchURI(searchString);
@@ -81,8 +81,8 @@ Template.moviesCreate.events({
     const creditsURI = TheMovieDB.handleCreditsURI(rawData.id);
 
     TheMovieDB.setRawData(rawData);
-    TheMovieDB.setCreditsData(creditsURI);
-    TheMovieDB.clearLocalSearchResults();
+    TheMovieDB.getCreditsData(creditsURI);
+    TheMovieDB.clearTMDBSearchResults();
 
     document.querySelector('.themoviedb input').value = rawData.title;
 

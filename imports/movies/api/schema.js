@@ -1,5 +1,9 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
+/**
+ * Define and export a scheme to ensure that only the fields we
+ * expect appear on documents in our Movies collection.
+ */
 export const schema = new SimpleSchema([{
   banner: {
     type: String,
