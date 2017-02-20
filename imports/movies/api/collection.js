@@ -5,6 +5,10 @@ const Movies = new Mongo.Collection('Movies');
 
 Movies.attachSchema(schema);
 
+if ( Meteor.isServer ) {
+  Movies._ensureIndex({ title: 1 });
+}
+
 Movies.allow({
   insert: () => true,
   update: () => true,

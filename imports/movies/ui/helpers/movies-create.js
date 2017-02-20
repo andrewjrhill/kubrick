@@ -61,7 +61,7 @@ Template.moviesCreate.events({
   /**
    *
    */
-  'keyup .themoviedb input, click .themoviedb input': _.debounce((event, template) => {
+  'keyup .themoviedb input, focus .themoviedb input': _.debounce((event, template) => {
     const searchString = event.currentTarget.value;
     const whitespace = /\S/;
 

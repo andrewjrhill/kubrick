@@ -4,7 +4,7 @@
   position: relative;
   background-color: $primary;
   transition: box-shadow 0.5s linear;
-  padding: rem-calc(20px 10px);
+  padding: rem-calc(25px);
 
   &:hover {
     box-shadow: 0 0 8px 0 $primary;
@@ -18,10 +18,9 @@
   .wrapper {
     display: flex;
     margin: 0 auto;
+    max-width: 980px;
     align-items: baseline;
     justify-content: space-between;
-    max-width: rem-calc(980px);
-    padding: rem-calc(0 15px);
 
     a {
       color: $white;
@@ -68,6 +67,46 @@
       &:hover {
         color: $primary;
         background-color: $white;
+      }
+    }
+  }
+}
+
+.search {
+  width: 100%;
+  background-color: $dark;
+
+  input {
+    border: 0;
+    color: $light;
+    margin: 0 auto;
+    display: block;
+    max-width: 980px;
+    box-shadow: none;
+    background-color: $dark;
+    padding: rem-calc(25px);
+  }
+
+  .search-results {
+    margin: 0 auto;
+    max-width: 980px;
+    background-color: $dark;
+
+    li {
+      padding: 0;
+      background-color: $dark;
+
+      &:hover {
+        background-color: $darkest;
+      }
+
+      a,
+      p {
+        display: block;
+        color: $lightest;
+        font-weight: 300;
+        letter-spacing: 1px;
+        padding: rem-calc(15px 10px);
       }
     }
   }

@@ -7,6 +7,9 @@ import '/imports/movies/ui/templates/movies-list.html';
 
 //
 Template.moviesList.onCreated(() => {
+  /**
+   *
+   */
   Tracker.autorun(() => {
     Meteor.subscribe('movies');
   });

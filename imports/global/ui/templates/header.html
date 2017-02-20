@@ -6,4 +6,19 @@
       <a href="/movies/create" class="add-new">Add New Movies</a>
     </div>
   </header>
+
+  {{#if moviesList }}
+    <div class="search">
+      <input type="text" name="search" placeholder="Search your collection by title..." autocomplete="off">
+      {{#if results }}
+        <ul class="search-results">
+          {{#each results }}
+            <li><a href="/movies/{{ _id }}">{{ title }}</a></li>
+          {{ else }}
+            <p>No results found</p>
+          {{/each }}
+        </ul>
+      {{/if }}
+    </div>
+  {{/if }}
 </template>
