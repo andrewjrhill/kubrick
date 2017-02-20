@@ -10,7 +10,6 @@ if (Meteor.isClient) {
   import '/imports/movies/ui/helpers/movies-single.js';
   import '/imports/movies/ui/helpers/movies-edit.js';
   import '/imports/movies/ui/helpers/movies-list.js';
-
   import '/imports/movies/routes.js';
 }
 

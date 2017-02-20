@@ -9,24 +9,29 @@ import { State } from '/imports/global/api/State.js';
 import { Movies } from '/imports/movies/api/collection.js';
 import '/imports/movies/ui/templates/movies-create.html';
 
-//
+// Called when an instance of this template is removed from the DOM and destroyed.
 Template.moviesCreate.onCreated(() => {
+  // Clears all application state when landing on the "/movies" route
   TheMovieDB.clearTMDBSearchResults();
   State.clear.status();
   State.clear.submissionData();
 });
 
-//
+// Specifies helpers available to this template.
 Template.moviesCreate.helpers({
   /**
-   *
+   * Used by the template to retrieve data from the application
+   * state to be displayed on the view.
    */
   querying: () => State.get.querying(),
   submissionData: () => State.get.submissionData(),
   creditsData: () => State.get.status() === 'getCreditsData',
 
   /**
+   * Used by the template to show a list of the first five movie
+   * results returned by TheMovieDB.
    *
+   * @return { Array } TheMovieDB movies data.
    */
   tmdbSearchResults: () => {
     const tmdbSearchResults = State.get.tmdbSearchResults();
@@ -41,7 +46,10 @@ Template.moviesCreate.helpers({
   },
 
   /**
+   * Used by the template to check if the form is in a state that
+   * will allow for a submission.
    *
+   * @return { Boolean }
    */
   disableSubmit: () => {
     const submissionData = State.get.submissionData();
@@ -55,10 +63,12 @@ Template.moviesCreate.helpers({
   },
 });
 
-//
+// Specifies event handlers for this template.
 Template.moviesCreate.events({
   /**
-   *
+   * On keyup or focus, this event will fire the first call to search
+   * TheMovieDB for the string entered in the input field. This event is
+   * debounced to prevent excessive requests.
    */
   'keyup .themoviedb input, focus .themoviedb input': _.debounce((event) => {
     const searchString = event.currentTarget.value;
@@ -74,7 +84,8 @@ Template.moviesCreate.events({
   }, 350),
 
   /**
-   *
+   * On click, this event will make a call to get and set the raw and
+   * credits data from TheMovieDB to be used in our application.
    */
   'click .search-results li'(event) {
     const rawData = Template.currentData(event.currentTarget);
@@ -90,7 +101,10 @@ Template.moviesCreate.events({
   },
 
   /**
-   *
+   * When changing the type select box, this event will add the selected
+   * movie to the array of movies we wish to add to our collection. It
+   * also does some basic validation and clears our inputs so the form
+   * may be reused.
    */
   'change .type select': () => {
     const title = document.querySelector('.themoviedb input');
@@ -109,7 +123,8 @@ Template.moviesCreate.events({
   },
 
   /**
-   *
+   * On click, this will remove the movie item from the array of movies
+   * we wish to add to our collection.
    */
   'click .remove': (event) => {
     const submissionData = State.get.submissionData();
@@ -126,7 +141,9 @@ Template.moviesCreate.events({
   },
 
   /**
-   *
+   * On submit, this event will map over the array of items we wish to
+   * add to our Mongo collection and insert them accordingly. We also
+   * notify our user of the addition here and redirect to the list view.
    */
   'submit form': (event) => {
     event.preventDefault();
@@ -151,7 +168,8 @@ Template.moviesCreate.events({
   },
 
   /**
-   *
+   * On click, this event will clear the array of movies we wish to add to
+   * our Mongo collection and will redirect us to the movies list view.
    */
   'click .cancel': (event) => {
     event.preventDefault();

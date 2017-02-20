@@ -7,21 +7,22 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Movies } from '/imports/movies/api/collection.js';
 import '/imports/movies/ui/templates/movies-single.html';
 
-
-//
+// Called when an instance of this template is removed from the DOM and destroyed.
 Template.moviesSingle.onCreated(() => {
   const templateInstance = Template.instance();
 
+  // Subscribes this template to our Mongo collection publication.
   Tracker.autorun(() => {
     templateInstance.movieId = FlowRouter.getParam('id');
     Meteor.subscribe('movies');
   });
 });
 
-//
+// Specifies helpers available to this template.
 Template.moviesSingle.helpers({
   /**
-   *
+   * Queries our mongo collection to find a movie with a given database ID.
+   * @return { Object } movie data
    */
   movie: () => {
     const templateInstance = Template.instance();
@@ -29,7 +30,8 @@ Template.moviesSingle.helpers({
   },
 
   /**
-   *
+   * Used by our template to determine which image to display
+   * based on the movie type.
    */
   typeImageSource: () => {
     const templateInstance = Template.instance();
@@ -48,7 +50,9 @@ Template.moviesSingle.helpers({
   },
 
   /**
-   *
+   * Used by our template to retrieve department members from the collection.
+   * @param { String } department names include "Directing", "Writing", and more...
+   * @return { String } department members or unknown.
    */
   departmentMembers: (department) => {
     const templateInstance = Template.instance();
@@ -67,7 +71,9 @@ Template.moviesSingle.helpers({
   },
 
   /**
-   *
+   * Much like the department helper, this is used by our template to
+   * retrieve crew members from the collection.
+   * @return { String } crew members or unknown.
    */
   castMembers: () => {
     const templateInstance = Template.instance();
@@ -82,25 +88,22 @@ Template.moviesSingle.helpers({
   },
 });
 
-//
+// Specifies event handlers for this template.
 Template.moviesSingle.events({
   /**
-   *
+   * On click, this event will navigate us to a given movies edit page.
+   * @return { Call } redirect
    */
-  'click .edit'(event, template) {
-    FlowRouter.go(`/movies/${template.movieId}/edit`);
-  },
+  'click .edit': (event, template) => FlowRouter.go(`/movies/${template.movieId}/edit`),
 
   /**
-   *
+   * On click, this event will remove movie from the Mongo collection.
    */
-  'click .delete'(event) {
+  'click .delete': (event) => {
     const { _id, title } = Template.currentData(event.currentTarget);
 
     Movies.remove({ _id });
-
     sAlert.warning(`You have deleted "${title}" from your collection.`);
-
-    FlowRouter.go('/');
+    return FlowRouter.go('/');
   },
 });
