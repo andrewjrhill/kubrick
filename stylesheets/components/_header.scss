@@ -99,15 +99,15 @@
       &:hover {
         background-color: $darkest;
       }
+    }
 
-      a,
-      p {
-        display: block;
-        color: $lightest;
-        font-weight: 300;
-        letter-spacing: 1px;
-        padding: rem-calc(15px 10px);
-      }
+    a,
+    p {
+      display: block;
+      color: $lightest;
+      font-weight: 300;
+      letter-spacing: 1px;
+      padding: rem-calc(15px 10px);
     }
   }
 }

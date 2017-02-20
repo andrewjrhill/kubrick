@@ -11,7 +11,7 @@ import '/imports/movies/ui/templates/movies-create.html';
 
 //
 Template.moviesCreate.onCreated(() => {
-  TheMovieDB.clearSearchResults();
+  TheMovieDB.clearLocalSearchResults();
   State.clear.status();
   State.clear.submissionData();
 });
@@ -28,14 +28,14 @@ Template.moviesCreate.helpers({
   /**
    *
    */
-  searchResults: () => {
-    const searchResults = State.get.searchResults();
+  localSearchResults: () => {
+    const localSearchResults = State.get.localSearchResults();
 
-    if (searchResults && !searchResults) {
+    if (localSearchResults && !localSearchResults) {
       return;
     }
 
-    const movies = searchResults ? searchResults.data.results : [];
+    const movies = localSearchResults ? localSearchResults.data.results : [];
 
     return movies.slice(0, 5);
   },
@@ -65,7 +65,7 @@ Template.moviesCreate.events({
     const whitespace = /\S/;
 
     if (!(whitespace.test(searchString))) {
-      return TheMovieDB.clearSearchResults();
+      return TheMovieDB.clearLocalSearchResults();
     }
 
     const searchURI = TheMovieDB.handleSearchURI(searchString);
@@ -82,7 +82,7 @@ Template.moviesCreate.events({
 
     TheMovieDB.setRawData(rawData);
     TheMovieDB.setCreditsData(creditsURI);
-    TheMovieDB.clearSearchResults();
+    TheMovieDB.clearLocalSearchResults();
 
     document.querySelector('.themoviedb input').value = rawData.title;
 

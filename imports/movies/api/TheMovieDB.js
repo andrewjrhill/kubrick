@@ -30,7 +30,7 @@ const TheMovieDB = {
       }
 
       State.set.status('searchTheMovieDB');
-      State.set.searchResults(result);
+      State.set.localSearchResults(result);
     });
   },
 
@@ -63,9 +63,9 @@ const TheMovieDB = {
   /**
    *
    */
-  clearSearchResults: () => {
-    State.set.status('clearSearchResults');
-    State.clear.searchResults();
+  clearLocalSearchResults: () => {
+    State.set.status('clearLocalSearchResults');
+    State.clear.localSearchResults();
   },
 
   /**

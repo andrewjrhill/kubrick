@@ -8,7 +8,7 @@ import '/imports/global/ui/templates/header.html';
 
 //
 Template.header.onDestroyed(() => {
-  State.clear.searchQuery();
+  State.clear.localSearchQuery();
 });
 
 //
@@ -30,16 +30,16 @@ Template.header.helpers({
    *
    */
   results: () => {
-    const searchQuery = State.get.searchQuery();
+    const localSearchQuery = State.get.localSearchQuery();
 
-    if (!searchQuery) {
+    if (!localSearchQuery) {
       return '';
     }
 
-    const fuzzyQuery = new RegExp(searchQuery, 'i');
-    const searchResults = Movies.find({ title: fuzzyQuery }, { limit: 10, sort: { title: 1 } });
+    const fuzzyQuery = new RegExp(localSearchQuery, 'i');
+    const localSearchResults = Movies.find({ title: fuzzyQuery }, { limit: 10, sort: { title: 1 } });
 
-    return searchResults;
+    return localSearchResults;
   },
 });
 
@@ -48,7 +48,7 @@ Template.header.events({
   /**
    *
    */
-  'click .search-results a': () => State.clear.searchQuery(),
+  'click .search-results a': () => State.clear.localSearchQuery(),
 
   /**
    *
@@ -57,9 +57,9 @@ Template.header.events({
     const value = event.target.value.trim();
 
     if (!value || value === '') {
-      return State.set.searchQuery('');
+      return State.set.localSearchQuery('');
     }
 
-    State.set.searchQuery(value);
+    State.set.localSearchQuery(value);
   }, 350),
 });
