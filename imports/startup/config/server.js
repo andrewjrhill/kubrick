@@ -3,11 +3,6 @@ import { BrowserPolicy } from 'meteor/browser-policy-common';
 
 // On startup, server package configuration
 Meteor.startup(() => {
-  console.log(`
-------------------
-WELCOME TO KUBRICK
-------------------`);
-
   // A list of URLs to be trusted by the app to prevent injections/iFraming.
   const trustedURLs = [
     'fonts.googleapis.com',

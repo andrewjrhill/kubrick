@@ -1,8 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import { Tracker } from 'meteor/tracker';
-
+import { HTTP } from 'meteor/http';
 import { State } from '/imports/global/api/State.js';
-import { Movies } from '/imports/movies/api/collection.js';
 
 const TheMovieDB = {
   /**
@@ -48,9 +46,6 @@ const TheMovieDB = {
    *
    */
   setCreditsData: (creditsURI) => {
-    const baseData = State.get.rawData();
-    const { tmdb_id } = baseData;
-
     State.set.querying(true);
 
     return HTTP.call('GET', creditsURI, {}, (error, result) => {
@@ -125,8 +120,8 @@ const TheMovieDB = {
         movie_type: type,
         ...rawData,
         cast: cast.slice(0, 10),
-        crew: crew,
-      }
+        crew,
+      },
     ];
 
     State.clear.rawData();
@@ -135,6 +130,6 @@ const TheMovieDB = {
     State.set.status('addToSubmisionData');
     State.set.submissionData(submissionData);
   },
-}
+};
 
 export { TheMovieDB };

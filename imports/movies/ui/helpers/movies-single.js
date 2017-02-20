@@ -94,13 +94,13 @@ Template.moviesSingle.events({
   /**
    *
    */
-  'click .delete'(event, template) {
+  'click .delete'(event) {
     const { _id, title } = Template.currentData(event.currentTarget);
 
     Movies.remove({ _id });
 
     sAlert.warning(`You have deleted "${title}" from your collection.`);
 
-    FlowRouter.go(`/`);
+    FlowRouter.go('/');
   },
 });

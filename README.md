@@ -41,7 +41,7 @@ Note: While I am technically hosting these secrets on a public Gist, my intent h
 $ git clone https://gist.github.com/80552adfdf14256393c2c64e6022610f.git && sudo mv ./80552adfdf14256393c2c64e6022610f/ ./settings/
 ```
 
-**4. Start your application:**
+**4. Start your application on `localhost:3000`:**
 
 ```
 $ npm start

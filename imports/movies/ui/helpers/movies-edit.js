@@ -37,7 +37,6 @@ Template.moviesEdit.events({
   'submit form'(event, template) {
     event.preventDefault();
 
-    const movie = Movies.findOne({ _id: template.movieId });
     const title = document.querySelector('.title input').value;
     const location = document.querySelector('.location input').value;
     const description = document.querySelector('.description textarea').value;

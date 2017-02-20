@@ -1,6 +1,5 @@
 import { _ } from 'meteor/underscore';
 import { Template } from 'meteor/templating';
-import { sAlert } from 'meteor/juliancwirko:s-alert';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
 import { Movies } from '/imports/movies/api/collection.js';
@@ -22,7 +21,7 @@ Template.header.helpers({
 
     if (currentRoute !== 'movies') {
       return;
-    };
+    }
 
     return true;
   },
@@ -49,7 +48,12 @@ Template.header.events({
   /**
    *
    */
-  'keyup .search input, focus .search input': _.debounce((event, template) => {
+  'click .search-results a': () => State.clear.searchQuery(),
+
+  /**
+   *
+   */
+  'keyup .search input, focus .search input': _.debounce((event) => {
     const value = event.target.value.trim();
 
     if (!value || value === '') {
@@ -58,11 +62,4 @@ Template.header.events({
 
     State.set.searchQuery(value);
   }, 350),
-
-  /**
-   *
-   */
-  'click .search-results a': (event, template) => {
-    State.clear.searchQuery();
-  },
 });

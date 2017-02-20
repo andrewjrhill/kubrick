@@ -1,5 +1,4 @@
 import { _ } from 'meteor/underscore';
-import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { sAlert } from 'meteor/juliancwirko:s-alert';
 import { FlowRouter } from 'meteor/kadira:flow-router';
@@ -61,7 +60,7 @@ Template.moviesCreate.events({
   /**
    *
    */
-  'keyup .themoviedb input, focus .themoviedb input': _.debounce((event, template) => {
+  'keyup .themoviedb input, focus .themoviedb input': _.debounce((event) => {
     const searchString = event.currentTarget.value;
     const whitespace = /\S/;
 
@@ -77,7 +76,7 @@ Template.moviesCreate.events({
   /**
    *
    */
-  'click .search-results li'(event, template) {
+  'click .search-results li'(event) {
     const rawData = Template.currentData(event.currentTarget);
     const creditsURI = TheMovieDB.handleCreditsURI(rawData.id);
 
@@ -93,7 +92,7 @@ Template.moviesCreate.events({
   /**
    *
    */
-  'change .type select': (event, template) => {
+  'change .type select': () => {
     const title = document.querySelector('.themoviedb input');
     const location = document.querySelector('.location input');
     const type = document.querySelector('.type select');
@@ -112,7 +111,7 @@ Template.moviesCreate.events({
   /**
    *
    */
-  'click .remove': (event, template) => {
+  'click .remove': (event) => {
     const submissionData = State.get.submissionData();
     const targetData = Template.currentData(event.currentTarget);
 
@@ -137,10 +136,8 @@ Template.moviesCreate.events({
     submissionData.map((movie) => {
       Movies.insert({ ...movie }, (error) => {
         if (error) {
-          return sAlert.error(`There was an error adding ${title} to your collection.`);
+          return sAlert.error(`There was an error adding ${submissionData[0].title} to your collection.`);
         }
-
-        FlowRouter.go('/movies');
       });
     });
 
@@ -149,6 +146,8 @@ Template.moviesCreate.events({
     } else {
       sAlert.success('You have added several new movies to your collection.');
     }
+
+    FlowRouter.go('/movies');
   },
 
   /**
@@ -157,6 +156,6 @@ Template.moviesCreate.events({
   'click .cancel': (event) => {
     event.preventDefault();
     State.clear.submissionData();
-    FlowRouter.go(`/movies`);
+    FlowRouter.go('/movies');
   },
 });

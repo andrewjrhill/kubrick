@@ -1,7 +1,8 @@
 import { Session } from 'meteor/session';
 
 /**
- *
+ * This object manages our global application state by getting,
+ * setting, or clearing various session variables.
  */
 const State = {
   get: {
