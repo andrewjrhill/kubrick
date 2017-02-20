@@ -8,6 +8,8 @@
     "babel-eslint": "5.0.0",
     "eslint": "2.2.0",
     "eslint-config-airbnb": "6.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "4.2.0"
   },
   "dependencies": {
@@ -17,7 +19,7 @@
     "reset-css": "2.0.20160720"
   },
   "scripts": {
-    "start": "meteor"
+    "start": "meteor --settings ./settings/kubrick-development.json"
   },
   "repository": {
     "type": "git",

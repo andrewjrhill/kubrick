@@ -1,0 +1,30 @@
+<template name="moviesSingle">
+  {{#with movie}}
+    <div class="banner" style="background-image: url('{{ banner }}')">
+      <div class="overlay">
+        <img src="{{ typeImageSource }}" alt="This movie is a {{ movie_type }}">
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <div class="content">
+        <div class="poster" style="background-image: url('{{ poster  }}')">&nbsp;</div>
+        <h1 class="title">{{ title }}</h1>
+      </div>
+
+      <ul class="details">
+        <li><span>Release Date: </span>{{ release_date }}</li>
+        <li><span>Directors: </span>{{ departmentMembers "Directing" }}</li>
+        <li><span>Writers: </span>{{ departmentMembers "Writing" }}</li>
+        <li><span>Location: </span>{{ location }}</li>
+        <li><span>Description: </span>{{ description }}</li>
+        <li><span>Cast: </span>{{ castMembers }}</li>
+      </ul>
+    </div>
+
+    <div class="buttons-wrapper">
+      <button class="edit">Edit</button>
+      <button class="delete">Delete</button>
+    </div>
+  {{/with}}
+</template>

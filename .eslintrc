@@ -3,11 +3,10 @@
   "extends": "airbnb",
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
   },
   "rules": {
     "new-cap": 1,
     "consistent-return": 0,
-    "array-callback-return": 0
   }
 }

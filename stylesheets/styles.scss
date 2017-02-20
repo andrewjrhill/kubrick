@@ -10,3 +10,11 @@
 @import 'base/_buttons.scss';
 @import 'base/_forms.scss';
 @import 'base/_typography.scss';
+
+// Components
+@import 'components/_header.scss';
+@import 'components/_movies-list.scss';
+@import 'components/_movies-single.scss';
+@import 'components/_movies-create.scss';
+@import 'components/_notifications.scss';
+@import 'components/_query.scss';

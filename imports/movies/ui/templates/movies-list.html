@@ -1,0 +1,13 @@
+<template name="moviesList">
+  <h1 class="primary">Movies collection</h1>
+
+  <div class="wrapper">
+    {{#each movies}}
+      <a class="tile" href="/movies/{{ _id }}">
+        <div class="poster" style="background-image: url('{{ poster  }}')">&nbsp;</div>
+        <div class="title">{{ title }}</div>
+        <div class="release-date">{{ release_year }}</div>
+      </a>
+    {{/each}}
+  </div>
+</template>

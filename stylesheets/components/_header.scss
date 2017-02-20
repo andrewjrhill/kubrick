@@ -1,0 +1,114 @@
+.header {
+  box-shadow: none;
+  text-align: center;
+  position: relative;
+  background-color: $primary;
+  transition: box-shadow 0.5s linear;
+  padding: rem-calc(25px);
+
+  &:hover {
+    box-shadow: 0 0 8px 0 $primary;
+  }
+
+  @media (min-width: $tablet) {
+    text-align: left;
+    padding: rem-calc(20px 30px);
+  }
+
+  .wrapper {
+    display: flex;
+    margin: 0 auto;
+    max-width: 980px;
+    align-items: baseline;
+    justify-content: space-between;
+
+    a {
+      color: $white;
+    }
+
+    .logo {
+      letter-spacing: 2px;
+      border: 1px solid $white;
+      background-color: transparent;
+      transition: color 0.3s linear,
+                  background-color 0.3s linear;
+      padding: rem-calc(5px 15px);
+      font-size: rem-calc(18px);
+
+      &:hover {
+        color: $primary;
+        background-color: $white;
+      }
+    }
+
+    .tagline {
+      display: none;
+      color: $white;
+      letter-spacing: 1px;
+      margin: rem-calc(-10px 0 0 30px);
+      font-size: rem-calc(14px);
+
+      @media (min-width: $tablet) {
+        display: inline;
+      }
+    }
+
+    .add-new {
+      right: 0;
+      color: $white;
+      position: relative;
+      text-transform: lowercase;
+      background-color: transparent;
+      transition: color 0.3s linear,
+                  background-color 0.3s linear;
+      padding: rem-calc(10px 15px);
+      font-size: rem-calc(16px);
+
+      &:hover {
+        color: $primary;
+        background-color: $white;
+      }
+    }
+  }
+}
+
+.search {
+  width: 100%;
+  background-color: $dark;
+
+  input {
+    border: 0;
+    color: $light;
+    margin: 0 auto;
+    display: block;
+    max-width: 980px;
+    box-shadow: none;
+    background-color: $dark;
+    padding: rem-calc(25px);
+  }
+
+  .search-results {
+    margin: 0 auto;
+    max-width: 980px;
+    background-color: $dark;
+
+    li {
+      padding: 0;
+      background-color: $dark;
+
+      &:hover {
+        background-color: $darkest;
+      }
+    }
+
+    a,
+    p {
+      margin: 0;
+      display: block;
+      color: $lightest;
+      font-weight: 300;
+      letter-spacing: 1px;
+      padding: rem-calc(15px 10px);
+    }
+  }
+}

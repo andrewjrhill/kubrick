@@ -24,3 +24,7 @@ fourseven:scss                   # Sass and SCSS support for Meteor.
 aldeed:simple-schema             # Simple, reactive schema validation smart package for Meteor.
 aldeed:collection2               # Provide support for specifying and validating Mongo against a schema.
 gwendall:body-events             # Get Template.body.events() working.
+http                             # Provides an HTTP request API on the client and server.
+session                          # Provides a global object on the client that you can use as a store.
+juliancwirko:s-alert             # Simple and fancy notifications / alerts / errors for Meteor.
+juliancwirko:s-alert-stackslide  # StackSlide effect for s-alert.

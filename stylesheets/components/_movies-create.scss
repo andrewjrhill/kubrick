@@ -1,0 +1,33 @@
+.moviesCreate {
+  max-width: rem-calc(768px);
+
+  .explainer {
+    color: $lightest;
+    padding: rem-calc(10px 0 30px 0);
+  }
+
+  .create-list {
+    background-color: $dark;
+    margin-bottom: rem-calc(20px);
+    padding: rem-calc(10px);
+
+    li {
+      display: flex;
+      font-weight: 300;
+      color: $lightest;
+      background-color: $dark;
+      justify-content: space-between;
+      font-size: rem-calc(15px);
+      padding: rem-calc(15px);
+
+      &:nth-child(even) {
+        background-color: $darkest;
+      }
+
+      span {
+        color: $primary;
+        cursor: pointer;
+      }
+    }
+  }
+}

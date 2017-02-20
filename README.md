@@ -33,7 +33,15 @@ $ git clone https://github.com/Sntax/kubrick
 $ cd kubrick && yarn install
 ```
 
-**3. Start your application:**
+**3. Clone and rename the applications `settings` directory to the project root to access API tokens and secrets:**
+
+Note: While I am technically hosting these secrets on a public Gist, my intent here is to demonstrate an understanding of securing a projects secrets by not commiting them to version control. A public Gist is most certainly not an appropriate place to store a true projects secrets.
+
+```
+$ git clone https://gist.github.com/80552adfdf14256393c2c64e6022610f.git && sudo mv ./80552adfdf14256393c2c64e6022610f/ ./settings/
+```
+
+**4. Start your application on `localhost:3000`:**
 
 ```
 $ npm start

@@ -11,19 +11,20 @@ input[type="submit"] {
   font-weight: 400;
   text-align: center;
   letter-spacing: 1px;
-  background: $primary;
+  background-color: $grey;
   font-family: $headingFont;
   text-transform: uppercase;
-  padding: calculateRem($baseSize / 2);
-  transition: background 0.1s linear, opacity 0.3s linear;
+  transition: background-color 0.2s linear;
   box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.3);
+  padding: rem-calc(20px 10px);
+  font-size: rem-calc(15px);
 
   &:not(:last-child) {
-    margin-bottom: calculateRem($baseSize);
+    margin-bottom: rem-calc(25px);
   }
 
   &:hover {
-    opacity: 0.9;
+    background-color: $primary;
   }
 
   &:focus {
@@ -34,21 +35,54 @@ input[type="submit"] {
     background: $grey;
     position: relative;
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
-    left: calculateRem(3px);
-    top: calculateRem(3px);
+    left: rem-calc(3px);
+    top: rem-calc(3px);
   }
 
-  &.cancel {
-    background-color: $grey;
+  @media (min-width: $tablet) {
+    max-width: 25%;
+
+    &:not(:last-child) {
+      margin: 0 rem-calc(25px) 0 0;
+    }
   }
 
-  &.offline {
-    background-color: $secondary;
+  &.primary {
+    background-color: $primary;
+
+    &:hover {
+      background-color: $grey;
+    }
   }
 }
 
-button[disabled],
-button[readonly] {
+input[readonly],
+input[disabled],
+button[readonly],
+button[disabled] {
   cursor: not-allowed;
-  background-color: $light;
+
+  &:hover {
+    background-color: $error;
+  }
+}
+
+.buttons-wrapper {
+  display: flex;
+  margin: rem-calc(20px 0 0 20px);
+
+  button {
+    margin: rem-calc(0 20px 20px 0);
+    width: rem-calc(280);
+
+    @media (min-width: $tablet) {
+      margin: rem-calc(0 20px 0 0);
+    }
+  }
+
+  @media (min-width: $tablet) {
+    display: flex;
+    flex-direction: row;
+    margin: rem-calc(30px 0 50px 0);
+  }
 }

@@ -1,0 +1,59 @@
+<template name="moviesCreate">
+  <h1 class="primary">Add new movies</h1>
+
+  <form class="movies-create">
+    <div class="loading-indicator active-{{ querying }}">&nbsp;</div>
+
+    <label class="themoviedb" required>
+      Enter a movie title:
+      <input type="text" name="title" placeholder="Raiders of the Lost Ark" value="" autocomplete="off">
+    </label>
+
+    {{#if tmdbSearchResults }}
+      <ul class="search-results">
+          {{#each movie in tmdbSearchResults }}
+            {{#with movie }}
+              <li>
+                <span class="title-year">{{ movie.original_title }} ({{ movie.release_date }})</span>
+                <span class="description">{{ movie.overview }}</span>
+              </li>
+            {{/with }}
+          {{/each }}
+      </ul>
+    {{/if }}
+
+    {{#if creditsData }}
+      <label class="location" required>
+        Where is this movie located?
+        <input type="text" name="title" placeholder="Loaned to Andrew Hill" value="" autocomplete="off">
+      </label>
+
+      <label class="type">
+        Select your Movie Type:
+        <select name="type">
+          <option value="" disabled selected>Choose One</option>
+          <option value="Blu-Ray">Blu-Ray</option>
+          <option value="DVD">DVD</option>
+          <option value="Digital Download">Digital Download</option>
+          <option value="Other">Other</option>
+        </select>
+      </label>
+    {{/if }}
+
+    {{#if submissionData }}
+      <p class="explainer">You are adding the following items to your collection. Feel free to add more before submitting:</p>
+      <ul class="create-list">
+        {{#each movie in submissionData }}
+          {{#with movie }}
+            <li>{{ title }} - {{ movie_type }}<span class="remove">Remove</span></li>
+          {{/with }}
+        {{/each}}
+      </ul>
+    {{/if }}
+
+    <div class="buttons-wrapper">
+      <input class="button submit" type="submit" name="submit" disabled={{ disableSubmit }}>
+      <button class="button cancel" type="button" name="cancel">Cancel</button>
+    </div>
+  </form>
+</template>

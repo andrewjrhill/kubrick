@@ -1,0 +1,117 @@
+.moviesSingle {
+  padding: 0;
+
+  .banner {
+    width: 100%;
+    background-size: cover;
+    background-color: $dark;
+    background-position: center;
+    transition: height 0.3s linear;
+    height: rem-calc(150px);
+
+    @media (min-width: $tablet) {
+      height: rem-calc(200px);
+    }
+
+    .overlay {
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: flex-end;
+      background-color: rgba(31, 36, 45, 0.7);
+
+      img {
+        width: auto;
+        opacity: 0.6;
+        transition: height 0.3s linear;
+        margin: rem-calc(0 20px 20px 0);
+        height: rem-calc(35px);
+
+        @media (min-width: $tablet) {
+          height: rem-calc(50px);
+        }
+      }
+    }
+  }
+
+  .wrapper {
+    display: flex;
+    color: $lightest;
+    flex-direction: column;
+    padding: rem-calc(20px);
+
+    @media (min-width: $tablet) {
+      padding: rem-calc(20px 0 20px 20px);
+    }
+
+    .content {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+
+      .poster {
+        position: relative;
+        background-size: cover;
+        background-color: $dark;
+        background-position: center;
+        box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.3);
+        transition: top 0.3s linear,
+                    width 0.3s linear,
+                    height 0.3s linear,
+                    min-width 0.3s linear;
+        margin-bottom: rem-calc(-50px);
+        min-width: rem-calc(100px);
+        height: rem-calc(140px);
+        width: rem-calc(100px);
+        top: rem-calc(-80px);
+
+        @media (min-width: $tablet) {
+          min-width: rem-calc(150px);
+          height: rem-calc(230px);
+          width: rem-calc(150px);
+          top: rem-calc(-120px);
+        }
+      }
+
+      .title {
+        width: 100%;
+        transition: font-size 0.3s linear,
+                    margin-top 0.3s linear;
+        margin-left: rem-calc(15px);
+        font-size: rem-calc(20px);
+
+        @media (min-width: $tablet) {
+          margin-top: rem-calc(10px);
+          font-size: rem-calc(30px);
+
+          &:after {
+            content: '';
+            width: 100%;
+            display: block;
+            background-color: $primary;
+            margin-top: rem-calc(15px);
+            height: rem-calc(1px);
+          }
+        }
+      }
+    }
+
+    .details {
+      position: relative;
+
+      li {
+        line-height: rem-calc(24px);
+
+        &:not(:last-child) {
+          margin-bottom: rem-calc(20px);
+        }
+
+        span {
+          color: $light;
+          margin: rem-calc(0 0 10px 0);
+        }
+      }
+    }
+  }
+}

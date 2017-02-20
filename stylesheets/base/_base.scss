@@ -22,8 +22,8 @@ html {
   color: $darkest;
   font-weight: 300;
   overflow-x: hidden;
-  background: $darkest;
   font-family: $bodyFont;
+  background-color: $darkest;
 }
 
 body {
@@ -34,10 +34,13 @@ body {
 }
 
 main {
-  padding-bottom: calculateRem($baseSize);
-  padding-top: calculateRem($baseSize / 2);
-  padding-left: calculateRem($baseSize / 2);
-  padding-right: calculateRem($baseSize / 2);
+  margin: 0 auto;
+  padding: rem-calc(20px 15px);
+  max-width: rem-calc(980px);
+
+  @media (min-width: $laptop) {
+    padding: rem-calc(40px 0);
+  }
 }
 
 img,
