@@ -4,10 +4,6 @@ import { Session } from 'meteor/session';
  * This object manages our global application state by getting,
  * setting, or clearing various reactive session variables.
  *
- * get - Gets the values stored in the reactive session variable.
- * set - Sets a new value in the reactive session variable.
- * clear - Sets the reactive session variable to a cleared state.
- *
  * GLOBAL SESSION VARIABLES:
  * status [String] - Name of the method calling this session variable.
  * querying [Boolean] - Used to hide or show the loading indicator.
