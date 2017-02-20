@@ -1,12 +1,14 @@
 # Kubrick
 #### This is the primary codebase for Kubrick
 
+[![Kubrik Screenshot](http://i.imgur.com/ksTNa6a.gif)](http://i.imgur.com/ksTNa6a.gif)
+
 Kubrick is a reactive application that allows you to keep track of all the movies in your collection.
 
 
 ## Technology
 
-Kubrick was built on the default MeteorJS stack which includes the following technologies:
+Kubrick was built on a modified MeteorJS stack which includes the following technologies:
 
 * [Meteor.js](https://meteor.com/) - An open source JavaScript platform for web, mobile, and desktop.
 * [Blaze](https://www.meteor.com/blaze/) - Meteors frontend rendering system, to build usable and maintainable user interfaces.
@@ -30,7 +32,7 @@ $ git clone https://github.com/Sntax/kubrick
 **2. Switch to your working directory and install all dependencies:**
 
 ```
-$ cd kubrick && yarn install
+$ cd kubrick && meteor npm install && yarn install
 ```
 
 **3. Clone and rename the applications `settings` directory to the project root to access API tokens and secrets:**
